@@ -1,0 +1,3 @@
+Warning (10268): Verilog HDL information at wave_gen_16b.sv(94): always construct contains both blocking and non-blocking assignments File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/wave_gen_16b.sv Line: 94
+Warning (10268): Verilog HDL information at wave_gen.sv(106): always construct contains both blocking and non-blocking assignments File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/wave_gen.sv Line: 106
+Warning (10268): Verilog HDL information at i2c_controller.v(36): always construct contains both blocking and non-blocking assignments File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/i2c_controller.v Line: 36
