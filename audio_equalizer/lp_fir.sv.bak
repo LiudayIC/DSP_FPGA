@@ -1,0 +1,108 @@
+module lowpass_fir(
+    input logic clk, rst_n,
+    input logic i_cs,
+    input logic signed [15:0] i_sample,
+    output logic signed [23:0] o_filterd_sig 
+);
+
+reg signed [15:0] sample_delay [0:30];
+reg signed [16:0] symmetric_result [0:15];
+reg signed [25:0] coeff_multiplier	 [0:15];
+reg signed [16:0] mul_scale_down [0:15];
+reg signed [17:0] s1_coeff_add  [0:7];
+reg signed [18:0] s2_coeff_add  [0:3];
+reg signed [19:0] s3_coeff_add  [0:1];
+reg signed [7:0]  coeff_value   [0:15];
+
+reg signed [20:0] filter_sig;
+reg signed [20:0] r_filter_sig;
+
+initial begin
+	 coeff_value [0]   = 8'h0B; //  0
+    coeff_value [1]   = 8'h0C; //  0
+    coeff_value [2]   = 8'h0C; //  0
+    coeff_value [3]   = 8'h0D; //  1
+    coeff_value [4]   = 8'h0E; //  0
+    coeff_value [5]   = 8'h0F; // -1
+    coeff_value [6]   = 8'h10; // -1
+    coeff_value [7]   = 8'h10; //  1
+    coeff_value [8]   = 8'h11; //  3
+    coeff_value [9]   = 8'h12; //  3
+    coeff_value [10]  = 8'h12; // -3
+    coeff_value [11]  = 8'h12; // -9
+    coeff_value [12]  = 8'h13; // -4
+    coeff_value [13]  = 8'h13; // 15
+    coeff_value [14]  = 8'h13; // 37
+    coeff_value [15]  = 8'h13; // 47   // center tap
+end
+
+
+always @(posedge clk) begin
+    if (rst_n) begin
+        sample_delay [0] <= 16'd0;
+    end else if (i_cs)
+        sample_delay [0] <= i_sample;
+end
+
+// sample_delay0 = x(n-1) ; sample_delay1  = x(n-2) ; x(n) = i_sample ; sample_delay31 = x(n-32)
+
+genvar i;
+generate
+for (i = 1 ; i <= 30; i = i +1) begin:Shifting_sample
+   always @(posedge clk) begin
+        if (rst_n) begin
+            sample_delay [i] <= 16'd0;
+        end else if (i_cs) begin
+            sample_delay [i] <= sample_delay[i - 1];
+        end
+    end 
+end
+endgenerate
+
+
+assign symmetric_result [0] = i_sample + sample_delay [30];
+
+generate
+for ( i = 1; i <= 15 ; i = i + 1) begin: Calculating_symmetric
+    assign symmetric_result [i] = sample_delay [i-1] + sample_delay [30 - i];
+end
+endgenerate
+
+generate 
+for ( i = 0; i <= 15 ; i = i + 1) begin: coeff_multiply
+    assign coeff_multiplier [i] = coeff_value [i] * symmetric_result[i] ;
+end
+endgenerate
+
+generate 
+for ( i = 0; i <= 15 ; i = i + 1) begin: shift_back
+    assign mul_scale_down [i]   = coeff_multiplier [i] >>> 9;
+end
+endgenerate
+
+generate
+for ( i = 0; i <= 7; i = i +1)    begin: sum_16_to_8
+    assign s1_coeff_add [i] = mul_scale_down[2*i] + mul_scale_down [2*i+1];
+end
+endgenerate
+
+generate 
+for ( i = 0; i <= 3; i = i +1) begin: sum_8_to_4
+    assign s2_coeff_add [i] = s1_coeff_add [2*i] + s1_coeff_add[2*i +1];
+end
+endgenerate
+
+assign s3_coeff_add [0] = s2_coeff_add[0] + s2_coeff_add[1];
+assign s3_coeff_add [1] = s2_coeff_add[2] + s2_coeff_add[3];
+assign filter_sig = s3_coeff_add[0] + s3_coeff_add[1];
+
+always @(posedge clk) begin	
+	if (rst_n) 
+	r_filter_sig <= 21'd0;
+	else if (i_cs)
+	r_filter_sig <= filter_sig;
+	else r_filter_sig <= r_filter_sig;
+end
+
+assign o_filterd_sig = r_filter_sig;
+endmodule

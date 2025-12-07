@@ -1,0 +1,10 @@
+module sum_signal(
+ input logic [15:0] i_1,
+ input logic [15:0] i_2,
+ input logic [15:0] i_3,
+ output logic signed [15:0] o_signal
+);
+logic signed [17:0] temp_sum;
+assign temp_sum = (i_1)  + (i_2) + (i_3 );
+assign o_signal = temp_sum;
+endmodule

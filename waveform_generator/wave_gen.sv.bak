@@ -1,0 +1,143 @@
+module wave_gen(
+ input logic clk,rst_n,
+ input logic noise_in,
+ input logic sample,
+ input logic inc_freq,
+ input logic amp,
+ input logic [2:0] wave_sel,
+ output logic signed [15:0] wave_out
+);
+
+// Internal signals
+logic [7:0] counter_1;
+logic period;
+logic [5:0] lut,inv_lut;
+logic signed [1:5] noise_value;
+logic [7:0] tri_mem,sine_mem,sawtooth_mem,ecg_mem;
+//logic [8:0] tri_noise,sine_noise,sawtooth_noise,ecg_noise;
+logic signed [15:0] tri_noise,sine_noise,sawtooth_noise,ecg_noise,square_noise;
+logic signed [7:0]  sine_wave,tri_wave,sawtooth_wave,ecg_wave,square_wave;
+logic signed [8:0]  sine_amp, tri_amp, saw_amp, ecg_amp, sq_amp;
+logic signed [8:0]  sine_out, tri_out, saw_out, ecg_out , sq_out;
+reg signed [15:0] data_out;
+
+
+//
+// Phase increase
+always @(posedge clk) begin
+    if (rst_n)       counter_1 <= 7'd0;
+    else if (sample) counter_1 <= counter_1 + inc_freq + 1'b1;;
+    //else  counter_1 <= counter_1 +1'b1;
+end
+
+//
+assign period = counter_1 == 8'd255 ? 1'b1 : 1'b0;
+assign inv_lut = (counter_1 == 8'h40 | counter_1 == 8'hC0) ? 6'd63: ~counter_1[5:0] + 1'b1;
+assign square_wave = counter_1 > 4'd125 ? {1'b0,{14{1'b1}}} : 15'd0;
+assign ecg_wave = ecg_mem;
+
+
+
+assign tri_noise = noise_in ? tri_out + noise_value : tri_out;
+assign square_noise =  noise_in ? square_wave + noise_value : square_wave;
+assign sawtooth_noise =  noise_in ? saw_out + noise_value : saw_out;
+assign sine_noise = noise_in ? sine_out + noise_value : sine_out;
+assign ecg_noise = noise_in ? ecg_wave + noise_value : ecg_wave;
+
+assign sine_out = amp ? sine_amp : sine_wave;
+assign tri_out  = amp ? tri_amp  : tri_wave;
+assign saw_out  = amp ? saw_amp  : sawtooth_wave;
+	
+
+
+// Phase Output Settings
+always_comb begin
+    case(counter_1[7:6])
+    2'b00 : begin 
+        lut = counter_1[5:0];
+        sine_wave = sine_mem; 
+        tri_wave = tri_mem;
+        sawtooth_wave = sawtooth_mem;
+		  sine_amp = 2*sine_mem; 
+        tri_amp = 2*tri_mem;
+        saw_amp = 2*sawtooth_mem;
+    end
+    2'b01 : begin 
+        lut = inv_lut;
+        sine_wave = sine_mem;
+        tri_wave = tri_mem;
+        sawtooth_wave = ~sawtooth_mem + 1'b1;
+		  sine_amp = 2*sine_mem; 
+        tri_amp = 2*tri_mem;
+        saw_amp = 2*(~sawtooth_mem + 1'b1);
+    end
+    2'b10 : begin 
+        lut = counter_1[5:0];
+        sine_wave = ~sine_mem + 1'b1;
+        tri_wave = ~tri_mem + 1'b1;
+        sawtooth_wave = sawtooth_mem;
+		  sine_amp = 2*(~sine_mem + 1'b1); 
+        tri_amp =  2*(~tri_mem + 1'b1);
+        saw_amp = 2*sawtooth_mem;
+    end
+    2'b11 : begin 
+        lut = inv_lut;
+        sine_wave = ~sine_mem + 1'b1;
+        tri_wave = ~tri_mem + 1'b1;
+        sawtooth_wave = ~sawtooth_mem + 1'b1;
+		  sine_amp = 2*(~sine_mem + 1'b1); 
+        tri_amp =  2*(~tri_mem  + 1'b1);
+        saw_amp = 2*(~sawtooth_mem + 1'b1);
+    end
+    endcase
+end
+
+always_comb begin
+    case(wave_sel)
+       3'b000 : data_out = sine_noise;
+       3'b001 : data_out = tri_noise;
+       3'b010 : data_out = sawtooth_noise;
+       3'b011 : data_out = square_wave;
+       3'b100 : data_out = ecg_wave; 
+		 default : data_out = 15'd0;
+    endcase 
+end
+
+
+//assign data_out = (wave_sel == 3'd0) ? sine_wave : (3'd1 ? tri_wave : (3'd2 ? sawtooth_wave : 3'd3 ? square_wave : 3'd4 ? ecg_wave : 15'd0));
+assign wave_out = data_out;
+
+//assign wave_out = sine_reg;
+
+// LUT 
+sine_lut rom_sine(
+    .clk(clk),
+    .addr(lut),
+    .q(sine_mem)
+);
+
+triangle_lut rom_triangle(
+    .clk(clk),
+    .addr(lut),
+    .q(tri_mem)
+);
+
+sawtooth_lut rom_sawtooth(
+    .clk(clk),
+    .addr(lut[5:0]),
+    .q(sawtooth_mem)
+);
+
+ecg_lut rom_ecg(
+    .clk(clk),
+    .addr(counter_1),
+    .q(ecg_mem)
+);
+
+lfsr noise_gen(
+    .clk(clk),
+    .rst_n(rst_n),
+    .noise(noise_value)
+);
+
+endmodule

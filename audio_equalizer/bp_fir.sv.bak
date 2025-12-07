@@ -1,0 +1,179 @@
+module bandpass_fir(
+    input logic clk, rst_n,
+    input logic i_cs,
+    input logic signed [15:0] i_sample,
+    output logic signed [23:0] o_filterd_sig 
+);
+
+reg signed [15:0] sample_delay [0:154];
+reg signed [16:0] symmetric_result [0:77];
+reg signed [25:0] coeff_multiplier	 [0:77];
+reg signed [16:0] mul_scale_down [0:77];
+reg signed [17:0] s1_coeff_add  [0:38];
+reg signed [18:0] s2_coeff_add  [0:19];
+reg signed [19:0] s3_coeff_add  [0:9];
+reg signed [11:0]  coeff_value   [0:77];
+
+reg signed [20:0] filter_sig;
+reg signed [20:0] r_filter_sig;
+
+initial begin
+coeff_value[0] = 12'hFFE;
+coeff_value[1] = 12'hFFC;
+coeff_value[2] = 12'hFF9;
+coeff_value[3] = 12'hFF8;
+coeff_value[4] = 12'hFF8;
+coeff_value[5] = 12'hFFA;
+coeff_value[6] = 12'hFFC;
+coeff_value[7] = 12'hFFE;
+coeff_value[8] = 12'h000;
+coeff_value[9] = 12'h000;
+coeff_value[10] = 12'hFFF;
+coeff_value[11] = 12'hFFC;
+coeff_value[12] = 12'hFF9;
+coeff_value[13] = 12'hFF7;
+coeff_value[14] = 12'hFF7;
+coeff_value[15] = 12'hFF7;
+coeff_value[16] = 12'hFFA;
+coeff_value[17] = 12'hFFD;
+coeff_value[18] = 12'h001;
+coeff_value[19] = 12'h003;
+coeff_value[20] = 12'h004;
+coeff_value[21] = 12'h003;
+coeff_value[22] = 12'h001;
+coeff_value[23] = 12'hFFE;
+coeff_value[24] = 12'hFFC;
+coeff_value[25] = 12'hFFC;
+coeff_value[26] = 12'hFFD;
+coeff_value[27] = 12'h000;
+coeff_value[28] = 12'h004;
+coeff_value[29] = 12'h009;
+coeff_value[30] = 12'h00C;
+coeff_value[31] = 12'h00D;
+coeff_value[32] = 12'h00C;
+coeff_value[33] = 12'h009;
+coeff_value[34] = 12'h005;
+coeff_value[35] = 12'h002;
+coeff_value[36] = 12'h000;
+coeff_value[37] = 12'h001;
+coeff_value[38] = 12'h004;
+coeff_value[39] = 12'h009;
+coeff_value[40] = 12'h00D;
+coeff_value[41] = 12'h010;
+coeff_value[42] = 12'h011;
+coeff_value[43] = 12'h00E;
+coeff_value[44] = 12'h009;
+coeff_value[45] = 12'h002;
+coeff_value[46] = 12'hFFC;
+coeff_value[47] = 12'hFF9;
+coeff_value[48] = 12'hFF8;
+coeff_value[49] = 12'hFFB;
+coeff_value[50] = 12'h000;
+coeff_value[51] = 12'h006;
+coeff_value[52] = 12'h009;
+coeff_value[53] = 12'h009;
+coeff_value[54] = 12'h004;
+coeff_value[55] = 12'hFFC;
+coeff_value[56] = 12'hFF1;
+coeff_value[57] = 12'hFE8;
+coeff_value[58] = 12'hFE2;
+coeff_value[59] = 12'hFE0;
+coeff_value[60] = 12'hFE5;
+coeff_value[61] = 12'hFED;
+coeff_value[62] = 12'hFF7;
+coeff_value[63] = 12'hFFE;
+coeff_value[64] = 12'h000;
+coeff_value[65] = 12'hFFA;
+coeff_value[66] = 12'hFEC;
+coeff_value[67] = 12'hFD9;
+coeff_value[68] = 12'hFC6;
+coeff_value[69] = 12'hFB9;
+coeff_value[70] = 12'hFB6;
+coeff_value[71] = 12'hFC2;
+coeff_value[72] = 12'hFDD;
+coeff_value[73] = 12'h004;
+coeff_value[74] = 12'h032;
+coeff_value[75] = 12'h05E;
+coeff_value[76] = 12'h081;
+coeff_value[77] = 12'h095;
+end
+
+
+always @(posedge clk) begin
+    if (rst_n) begin
+        sample_delay [0] <= 16'd0;
+    end else if (i_cs)
+        sample_delay [0] <= i_sample;
+end
+
+// sample_delay0 = x(n-1) ; sample_delay1  = x(n-2) ; x(n) = i_sample ; sample_delay31 = x(n-32)
+
+genvar i;
+generate
+for (i = 1 ; i <= 154; i = i +1) begin:Shifting_sample
+   always @(posedge clk) begin
+        if (rst_n) begin
+            sample_delay [i] <= 16'd0;
+        end else if (i_cs) begin
+            sample_delay [i] <= sample_delay[i - 1];
+        end
+    end 
+end
+endgenerate
+
+
+assign symmetric_result [0] = i_sample + sample_delay [154];
+
+generate
+for ( i = 1; i <= 77 ; i = i + 1) begin: Calculating_symmetric
+    assign symmetric_result [i] = sample_delay [i-1] + sample_delay [154 - i];
+end
+endgenerate
+
+generate 
+for ( i = 0; i <= 77 ; i = i + 1) begin: coeff_multiply
+    assign coeff_multiplier [i] = coeff_value [i] * symmetric_result[i] ;
+end
+endgenerate
+
+generate 
+for ( i = 0; i <= 77 ; i = i + 1) begin: shift_back
+    assign mul_scale_down [i]   = coeff_multiplier [i] >>> 12;
+end
+endgenerate
+
+generate
+for ( i = 0; i <= 37; i = i +1)    begin: sum_16_to_8
+    assign s1_coeff_add [i] = mul_scale_down[2*i] + mul_scale_down [2*i+1];
+end
+endgenerate
+
+assign s1_coeff_add [38] =  mul_scale_down[76] + mul_scale_down [77];
+
+generate 
+for ( i = 0; i <= 18; i = i +1) begin: sum_8_to_4
+    assign s2_coeff_add [i] = s1_coeff_add [2*i] + s1_coeff_add[2*i +1];
+end
+endgenerate
+
+generate 
+for ( i = 0; i <= 8; i = i +1) begin: pre_final
+    assign s3_coeff_add [i] = s2_coeff_add [2*i] + s2_coeff_add[2*i +1];
+end
+endgenerate
+
+assign s3_coeff_add [9] = s1_coeff_add [38] + s2_coeff_add [18];
+
+assign filter_sig = s3_coeff_add [9] + s3_coeff_add [8] + s3_coeff_add [7] +s3_coeff_add [6] +s3_coeff_add [5] +s3_coeff_add [4] +s3_coeff_add [3] +s3_coeff_add [2] + s3_coeff_add [1] + s3_coeff_add [0];
+
+
+always @(posedge clk) begin	
+	if (rst_n) 
+	r_filter_sig <= 21'd0;
+	else if (i_cs)
+	r_filter_sig <= filter_sig;
+	else r_filter_sig <= r_filter_sig;
+end
+
+assign o_filterd_sig = r_filter_sig;
+endmodule

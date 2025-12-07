@@ -1,0 +1,140 @@
+module wave_gen_16b(
+ input logic clk,rst_n,
+ input logic noise_in,
+ input logic sample,
+ input logic inc_freq,
+ input logic amp,
+ input logic duty_cycle,
+ input logic [2:0] wave_sel,
+ output logic signed [15:0] wave_out
+);
+
+// Internal signals
+logic [9:0] counter_1;
+logic signed [15:0] noise_value;
+logic signed [15:0] noise_amp;
+logic signed [15:0] tri_mem,sine_mem,sawtooth_mem,ecg_mem,square_wave;
+logic signed [15:0] tri_wave,sine_wave,sawtooth_wave,ecg_wave;
+//logic [8:0] tri_noise,sine_noise,sawtooth_noise,ecg_noise;
+logic signed [17:0] tri_noise,sine_noise,sawtooth_noise,ecg_noise,square_noise;
+logic signed [16:0]  sine_amp, tri_amp, sawtooth_amp, ecg_amp, square_amp;
+logic signed [17:0] data_out;
+wire [31:0] lfsr_out;
+
+ 
+ // assign noise_value = {2'b0, lfsr_out[13:0]} - 16'd128;
+assign noise_value = {4'b0,lfsr_out[11:0]};
+
+always_comb begin
+    sine_wave       = sine_mem >>> 1;
+    tri_wave        = tri_mem  >>> 1;
+    sawtooth_wave   = sawtooth_mem >>> 1;
+    //square_wave     = counter_1 < 10'd512 ? 16'h0000 : 16'h3FFF;
+	 square_wave     = duty_cycle ? (counter_1 < 10'd256 ? 16'h0000 : 16'h3FFF) : (counter_1 < 10'd512 ? 16'h0000 : 16'h3FFF);
+    ecg_wave        = ecg_mem >>> 1; 
+/*
+    sine_noise       = sine_wave + noise_value;
+    tri_noise        = tri_wave  + noise_value;
+    sawtooth_noise   = sawtooth_wave + noise_value;
+    square_noise     = square_wave + noise_value;
+    ecg_noise        = ecg_wave + noise_value;
+
+    sine_amp = sine_wave <<< 1;
+    tri_amp  = tri_wave <<< 1;
+    sawtooth_amp = sawtooth_amp <<< 1;
+    square_amp   = square_amp <<< 1;
+    ecg_amp = ecg_amp <<< 1;
+    */
+end
+
+
+// Phase increase
+always @(posedge clk) begin
+    if (rst_n)       counter_1 <= 10'd0;
+    else if (sample) counter_1 <= counter_1 + inc_freq + 1'b1;
+    else if (counter_1 == 10'd1023) counter_1 <= 10'd0;
+end
+
+//
+
+
+always @(posedge clk) begin
+    if (rst_n) begin
+        tri_amp      <= 0;
+        square_amp   <= 0;
+        sawtooth_amp <= 0;
+        sine_amp     <= 0;
+        ecg_amp      <= 0;
+    end else begin
+        tri_amp      <= amp ? (tri_wave)      : tri_wave >>> 1;
+        square_amp   <= amp ? (square_wave)   : square_wave >>> 1;
+        sawtooth_amp <= amp ? (sawtooth_wave) : sawtooth_wave >>> 1;
+        sine_amp     <= amp ? (sine_wave)     : sine_wave >>> 1;
+        ecg_amp      <= amp ? (ecg_wave)      : ecg_wave  >>> 1; 
+    end
+end
+
+always @(posedge clk) begin
+    if (rst_n) begin
+        tri_noise      <= 0;
+        square_noise   <= 0;
+        sawtooth_noise <= 0;
+        sine_noise     <= 0;
+        ecg_noise      <= 0;
+    end else begin
+        tri_noise      <= noise_in ? (tri_amp)      + noise_value       : tri_amp;
+        square_noise   <= noise_in ? (square_amp)   + noise_value       : square_amp;
+        sawtooth_noise <= noise_in ? (sawtooth_amp) + noise_value       : sawtooth_amp;
+        sine_noise     <= noise_in ? (sine_amp)     + noise_value 		: sine_amp;
+        ecg_noise      <= noise_in ? (ecg_amp)      + noise_value       : ecg_amp;
+    end
+end
+	
+
+always@(posedge clk) begin
+    case(wave_sel)
+       3'b000 : data_out <= sine_noise;
+       3'b001 : data_out <= tri_noise;
+       3'b010 : data_out <= sawtooth_noise;
+       3'b011 : data_out <= square_noise;
+       3'b100 : data_out <= ecg_noise; 
+	   default : data_out = 15'd0;
+    endcase 
+end
+
+assign wave_out = data_out;
+
+
+// LUT 
+sine_lut_16b rom_sine(
+    .clk(clk),
+    .addr(counter_1),
+    .q(sine_mem)
+);
+
+triangle_lut_16b rom_triangle(
+    .clk(clk),
+    .addr(counter_1),
+    .q(tri_mem)
+);
+
+sawtooth_lut_16b rom_sawtooth(
+    .clk(clk),
+    .addr(counter_1),
+    .q(sawtooth_mem)
+);
+
+ecg_lut_16b rom_ecg(
+    .clk(clk),
+    .addr(counter_1),
+    .q(ecg_mem)
+);
+
+lfsr noise_gen(
+    .clk(clk),
+    .reset(rst_n),
+	 .enable(sample),
+    .lfsr_out(lfsr_out)
+);
+
+endmodule

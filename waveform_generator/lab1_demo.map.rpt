@@ -1,0 +1,1626 @@
+Analysis & Synthesis report for lab1_demo
+Tue Nov 25 13:25:21 2025
+Quartus Prime Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis RAM Summary
+  9. Analysis & Synthesis DSP Block Usage Summary
+ 10. Analysis & Synthesis IP Cores Summary
+ 11. State Machine - |lab1_demo|i2c_av_config:setting_audio_chip|control_state
+ 12. Registers Removed During Synthesis
+ 13. Removed Registers Triggering Further Register Optimizations
+ 14. General Register Statistics
+ 15. Inverted Register Statistics
+ 16. Registers Packed Into Inferred Megafunctions
+ 17. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 18. Source assignments for wavegen_codec:wave_out|wave_gen_16b:wg|ecg_lut_16b:rom_ecg|altsyncram:rom_rtl_0|altsyncram_2hd1:auto_generated
+ 19. Source assignments for wavegen_codec:wave_out|wave_gen_16b:wg|sawtooth_lut_16b:rom_sawtooth|altsyncram:rom_rtl_0|altsyncram_18e1:auto_generated
+ 20. Source assignments for wavegen_codec:wave_out|wave_gen_16b:wg|triangle_lut_16b:rom_triangle|altsyncram:rom_rtl_0|altsyncram_47e1:auto_generated
+ 21. Source assignments for wavegen_codec:wave_out|wave_gen_16b:wg|sine_lut_16b:rom_sine|altsyncram:rom_rtl_0|altsyncram_mrd1:auto_generated
+ 22. Parameter Settings for User Entity Instance: pll_clk:pll|pll_clk_0002:pll_clk_inst|altera_pll:altera_pll_i
+ 23. Parameter Settings for User Entity Instance: i2c_av_config:setting_audio_chip
+ 24. Parameter Settings for User Entity Instance: i2c_av_config:setting_audio_chip|i2c_controller:control
+ 25. Parameter Settings for User Entity Instance: wavegen_codec:wave_out|wave_gen_16b:wg|sine_lut_16b:rom_sine
+ 26. Parameter Settings for User Entity Instance: wavegen_codec:wave_out|wave_gen_16b:wg|triangle_lut_16b:rom_triangle
+ 27. Parameter Settings for User Entity Instance: wavegen_codec:wave_out|wave_gen_16b:wg|sawtooth_lut_16b:rom_sawtooth
+ 28. Parameter Settings for User Entity Instance: wavegen_codec:wave_out|wave_gen_16b:wg|ecg_lut_16b:rom_ecg
+ 29. Parameter Settings for User Entity Instance: wavegen_codec:wave_out|wave_gen_16b:wg|lfsr:noise_gen
+ 30. Parameter Settings for Inferred Entity Instance: wavegen_codec:wave_out|wave_gen_16b:wg|ecg_lut_16b:rom_ecg|altsyncram:rom_rtl_0
+ 31. Parameter Settings for Inferred Entity Instance: wavegen_codec:wave_out|wave_gen_16b:wg|sawtooth_lut_16b:rom_sawtooth|altsyncram:rom_rtl_0
+ 32. Parameter Settings for Inferred Entity Instance: wavegen_codec:wave_out|wave_gen_16b:wg|triangle_lut_16b:rom_triangle|altsyncram:rom_rtl_0
+ 33. Parameter Settings for Inferred Entity Instance: wavegen_codec:wave_out|wave_gen_16b:wg|sine_lut_16b:rom_sine|altsyncram:rom_rtl_0
+ 34. altsyncram Parameter Settings by Entity Instance
+ 35. Port Connectivity Checks: "wavegen_codec:wave_out|wave_gen_16b:wg|lfsr:noise_gen"
+ 36. Port Connectivity Checks: "wavegen_codec:wave_out|wave_gen_16b:wg|ecg_lut_16b:rom_ecg"
+ 37. Port Connectivity Checks: "wavegen_codec:wave_out|wave_gen_16b:wg|sawtooth_lut_16b:rom_sawtooth"
+ 38. Port Connectivity Checks: "wavegen_codec:wave_out|wave_gen_16b:wg|triangle_lut_16b:rom_triangle"
+ 39. Port Connectivity Checks: "wavegen_codec:wave_out|wave_gen_16b:wg|sine_lut_16b:rom_sine"
+ 40. Port Connectivity Checks: "wavegen_codec:wave_out|audio_codec:ac"
+ 41. Port Connectivity Checks: "wavegen_codec:wave_out"
+ 42. Post-Synthesis Netlist Statistics for Top Partition
+ 43. Elapsed Time Per Partition
+ 44. Analysis & Synthesis Messages
+ 45. Analysis & Synthesis Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2024  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++----------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                     ;
++---------------------------------+------------------------------------------------+
+; Analysis & Synthesis Status     ; Successful - Tue Nov 25 13:25:21 2025          ;
+; Quartus Prime Version           ; 23.1std.1 Build 993 05/14/2024 SC Lite Edition ;
+; Revision Name                   ; lab1_demo                                      ;
+; Top-level Entity Name           ; lab1_demo                                      ;
+; Family                          ; Cyclone V                                      ;
+; Logic utilization (in ALMs)     ; N/A                                            ;
+; Total registers                 ; 1469                                           ;
+; Total pins                      ; 78                                             ;
+; Total virtual pins              ; 0                                              ;
+; Total block memory bits         ; 61,440                                         ;
+; Total DSP Blocks                ; 19                                             ;
+; Total HSSI RX PCSs              ; 0                                              ;
+; Total HSSI PMA RX Deserializers ; 0                                              ;
+; Total HSSI TX PCSs              ; 0                                              ;
+; Total HSSI PMA TX Serializers   ; 0                                              ;
+; Total PLLs                      ; 1                                              ;
+; Total DLLs                      ; 0                                              ;
++---------------------------------+------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                             ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                          ; Setting            ; Default Value      ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                          ; 5CSXFC6D6F31C6     ;                    ;
+; Top-level entity name                                                           ; lab1_demo          ; lab1_demo          ;
+; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
+; Use smart compilation                                                           ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
+; Enable compact report table                                                     ; Off                ; Off                ;
+; Restructure Multiplexers                                                        ; Auto               ; Auto               ;
+; MLAB Add Timing Constraints For Mixed-Port Feed-Through Mode Setting Don't Care ; Off                ; Off                ;
+; Create Debugging Nodes for IP Cores                                             ; Off                ; Off                ;
+; Preserve fewer node names                                                       ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                                   ; Enable             ; Enable             ;
+; Verilog Version                                                                 ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                                    ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                        ; Auto               ; Auto               ;
+; Safe State Machine                                                              ; Off                ; Off                ;
+; Extract Verilog State Machines                                                  ; On                 ; On                 ;
+; Extract VHDL State Machines                                                     ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                               ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                      ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                                  ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                         ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                       ; On                 ; On                 ;
+; Parallel Synthesis                                                              ; On                 ; On                 ;
+; DSP Block Balancing                                                             ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                              ; On                 ; On                 ;
+; Power-Up Don't Care                                                             ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                                    ; Off                ; Off                ;
+; Remove Duplicate Registers                                                      ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                            ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                          ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                           ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                       ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                            ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                             ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                                  ; Off                ; Off                ;
+; Optimization Technique                                                          ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                              ; 70                 ; 70                 ;
+; Auto Carry Chains                                                               ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                            ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                           ; Off                ; Off                ;
+; Auto ROM Replacement                                                            ; On                 ; On                 ;
+; Auto RAM Replacement                                                            ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                      ; On                 ; On                 ;
+; Auto Shift Register Replacement                                                 ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                                 ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                                   ; On                 ; On                 ;
+; Strict RAM Replacement                                                          ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                               ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                           ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                                   ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                             ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                               ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                         ; On                 ; On                 ;
+; Report Parameter Settings                                                       ; On                 ; On                 ;
+; Report Source Assignments                                                       ; On                 ; On                 ;
+; Report Connectivity Checks                                                      ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                              ; Off                ; Off                ;
+; Synchronization Register Chain Length                                           ; 3                  ; 3                  ;
+; Power Optimization During Synthesis                                             ; Normal compilation ; Normal compilation ;
+; HDL message level                                                               ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                                 ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                        ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                              ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                       ; 100                ; 100                ;
+; Clock MUX Protection                                                            ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                     ; Off                ; Off                ;
+; Block Design Naming                                                             ; Auto               ; Auto               ;
+; SDC constraint protection                                                       ; Off                ; Off                ;
+; Synthesis Effort                                                                ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal                    ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                            ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                              ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                     ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                          ; On                 ; On                 ;
+; Automatic Parallel Synthesis                                                    ; On                 ; On                 ;
+; Partial Reconfiguration Bitstream ID                                            ; Off                ; Off                ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 16          ;
+; Maximum allowed            ; 16          ;
+;                            ;             ;
+; Average used               ; 1.01        ;
+; Maximum used               ; 16          ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.1%      ;
+;     Processor 3            ;   0.1%      ;
+;     Processor 4            ;   0.1%      ;
+;     Processor 5            ;   0.1%      ;
+;     Processor 6            ;   0.1%      ;
+;     Processor 7            ;   0.1%      ;
+;     Processor 8            ;   0.1%      ;
+;     Processors 9-16        ;   0.0%      ;
++----------------------------+-------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                                                   ;
++-----------------------------------------------------+-----------------+-------------------------------------------------------+------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path                    ; Used in Netlist ; File Type                                             ; File Name with Absolute Path                                                                   ; Library ;
++-----------------------------------------------------+-----------------+-------------------------------------------------------+------------------------------------------------------------------------------------------------+---------+
+; ecg_lut_16b.v                                       ; yes             ; User Verilog HDL File                                 ; D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/ecg_lut_16b.v                                       ;         ;
+; sine_lut_16b.v                                      ; yes             ; User Verilog HDL File                                 ; D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/sine_lut_16b.v                                      ;         ;
+; triangle_lut_16b.v                                  ; yes             ; User Verilog HDL File                                 ; D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/triangle_lut_16b.v                                  ;         ;
+; sawtooth_lut_16b.v                                  ; yes             ; User Verilog HDL File                                 ; D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/sawtooth_lut_16b.v                                  ;         ;
+; wave_gen_16b.sv                                     ; yes             ; User SystemVerilog HDL File                           ; D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/wave_gen_16b.sv                                     ;         ;
+; fir.sv                                              ; yes             ; User SystemVerilog HDL File                           ; D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/fir.sv                                              ;         ;
+; wavegen_codec.sv                                    ; yes             ; User SystemVerilog HDL File                           ; D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/wavegen_codec.sv                                    ;         ;
+; lfsr.v                                              ; yes             ; User Verilog HDL File                                 ; D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lfsr.v                                              ;         ;
+; lab1_demo.v                                         ; yes             ; User Verilog HDL File                                 ; D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v                                         ;         ;
+; i2c_controller.v                                    ; yes             ; User Verilog HDL File                                 ; D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/i2c_controller.v                                    ;         ;
+; i2c_av_config.v                                     ; yes             ; User Verilog HDL File                                 ; D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/i2c_av_config.v                                     ;         ;
+; audio_codec.v                                       ; yes             ; User Verilog HDL File                                 ; D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/audio_codec.v                                       ;         ;
+; pll_clk.v                                           ; yes             ; User Wizard-Generated File                            ; D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/pll_clk.v                                           ; pll_clk ;
+; pll_clk/pll_clk_0002.v                              ; yes             ; User Verilog HDL File                                 ; D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/pll_clk/pll_clk_0002.v                              ; pll_clk ;
+; ecg_16b.mem                                         ; yes             ; Auto-Found Unspecified File                           ; D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/ecg_16b.mem                                         ;         ;
+; sine_16b.mem                                        ; yes             ; Auto-Found Unspecified File                           ; D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/sine_16b.mem                                        ;         ;
+; sawtooth_16b.mem                                    ; yes             ; Auto-Found Unspecified File                           ; D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/sawtooth_16b.mem                                    ;         ;
+; triangle_16b.mem                                    ; yes             ; Auto-Found Unspecified File                           ; D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/triangle_16b.mem                                    ;         ;
+; altera_pll.v                                        ; yes             ; Megafunction                                          ; d:/workspace/quartus_prime/quartus/libraries/megafunctions/altera_pll.v                        ;         ;
+; altsyncram.tdf                                      ; yes             ; Megafunction                                          ; d:/workspace/quartus_prime/quartus/libraries/megafunctions/altsyncram.tdf                      ;         ;
+; stratix_ram_block.inc                               ; yes             ; Megafunction                                          ; d:/workspace/quartus_prime/quartus/libraries/megafunctions/stratix_ram_block.inc               ;         ;
+; lpm_mux.inc                                         ; yes             ; Megafunction                                          ; d:/workspace/quartus_prime/quartus/libraries/megafunctions/lpm_mux.inc                         ;         ;
+; lpm_decode.inc                                      ; yes             ; Megafunction                                          ; d:/workspace/quartus_prime/quartus/libraries/megafunctions/lpm_decode.inc                      ;         ;
+; aglobal231.inc                                      ; yes             ; Megafunction                                          ; d:/workspace/quartus_prime/quartus/libraries/megafunctions/aglobal231.inc                      ;         ;
+; a_rdenreg.inc                                       ; yes             ; Megafunction                                          ; d:/workspace/quartus_prime/quartus/libraries/megafunctions/a_rdenreg.inc                       ;         ;
+; altrom.inc                                          ; yes             ; Megafunction                                          ; d:/workspace/quartus_prime/quartus/libraries/megafunctions/altrom.inc                          ;         ;
+; altram.inc                                          ; yes             ; Megafunction                                          ; d:/workspace/quartus_prime/quartus/libraries/megafunctions/altram.inc                          ;         ;
+; altdpram.inc                                        ; yes             ; Megafunction                                          ; d:/workspace/quartus_prime/quartus/libraries/megafunctions/altdpram.inc                        ;         ;
+; db/altsyncram_2hd1.tdf                              ; yes             ; Auto-Generated Megafunction                           ; D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/db/altsyncram_2hd1.tdf                              ;         ;
+; db/lab1_demo.ram0_ecg_lut_16b_93421404.hdl.mif      ; yes             ; Auto-Generated Auto-Found Memory Initialization File  ; D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/db/lab1_demo.ram0_ecg_lut_16b_93421404.hdl.mif      ;         ;
+; db/altsyncram_18e1.tdf                              ; yes             ; Auto-Generated Megafunction                           ; D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/db/altsyncram_18e1.tdf                              ;         ;
+; db/lab1_demo.ram0_sawtooth_lut_16b_17db4b39.hdl.mif ; yes             ; Auto-Generated Auto-Found Memory Initialization File  ; D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/db/lab1_demo.ram0_sawtooth_lut_16b_17db4b39.hdl.mif ;         ;
+; db/altsyncram_47e1.tdf                              ; yes             ; Auto-Generated Megafunction                           ; D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/db/altsyncram_47e1.tdf                              ;         ;
+; db/lab1_demo.ram0_triangle_lut_16b_a89b6f06.hdl.mif ; yes             ; Auto-Generated Auto-Found Memory Initialization File  ; D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/db/lab1_demo.ram0_triangle_lut_16b_a89b6f06.hdl.mif ;         ;
+; db/altsyncram_mrd1.tdf                              ; yes             ; Auto-Generated Megafunction                           ; D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/db/altsyncram_mrd1.tdf                              ;         ;
+; db/lab1_demo.ram0_sine_lut_16b_d9458eff.hdl.mif     ; yes             ; Auto-Generated Auto-Found Memory Initialization File  ; D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/db/lab1_demo.ram0_sine_lut_16b_d9458eff.hdl.mif     ;         ;
++-----------------------------------------------------+-----------------+-------------------------------------------------------+------------------------------------------------------------------------------------------------+---------+
+
+
++----------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                                                                                ;
++---------------------------------------------+------------------------------------------------------------------------------+
+; Resource                                    ; Usage                                                                        ;
++---------------------------------------------+------------------------------------------------------------------------------+
+; Estimate of Logic utilization (ALMs needed) ; 781                                                                          ;
+;                                             ;                                                                              ;
+; Combinational ALUT usage for logic          ; 446                                                                          ;
+;     -- 7 input functions                    ; 3                                                                            ;
+;     -- 6 input functions                    ; 46                                                                           ;
+;     -- 5 input functions                    ; 10                                                                           ;
+;     -- 4 input functions                    ; 19                                                                           ;
+;     -- <=3 input functions                  ; 368                                                                          ;
+;                                             ;                                                                              ;
+; Dedicated logic registers                   ; 1469                                                                         ;
+;                                             ;                                                                              ;
+; I/O pins                                    ; 78                                                                           ;
+; Total MLAB memory bits                      ; 0                                                                            ;
+; Total block memory bits                     ; 61440                                                                        ;
+;                                             ;                                                                              ;
+; Total DSP Blocks                            ; 19                                                                           ;
+;                                             ;                                                                              ;
+; Total PLLs                                  ; 1                                                                            ;
+;     -- PLLs                                 ; 1                                                                            ;
+;                                             ;                                                                              ;
+; Maximum fan-out node                        ; pll_clk:pll|pll_clk_0002:pll_clk_inst|altera_pll:altera_pll_i|outclk_wire[0] ;
+; Maximum fan-out                             ; 1487                                                                         ;
+; Total fan-out                               ; 9315                                                                         ;
+; Average fan-out                             ; 4.32                                                                         ;
++---------------------------------------------+------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                              ;
++-------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------------+------------------+--------------+
+; Compilation Hierarchy Node                      ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                 ; Entity Name      ; Library Name ;
++-------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------------+------------------+--------------+
+; |lab1_demo                                      ; 446 (1)             ; 1469 (0)                  ; 61440             ; 19         ; 78   ; 0            ; |lab1_demo                                                                                                                          ; lab1_demo        ; work         ;
+;    |i2c_av_config:setting_audio_chip|           ; 57 (22)             ; 44 (18)                   ; 0                 ; 0          ; 0    ; 0            ; |lab1_demo|i2c_av_config:setting_audio_chip                                                                                         ; i2c_av_config    ; work         ;
+;       |i2c_controller:control|                  ; 35 (35)             ; 26 (26)                   ; 0                 ; 0          ; 0    ; 0            ; |lab1_demo|i2c_av_config:setting_audio_chip|i2c_controller:control                                                                  ; i2c_controller   ; work         ;
+;    |pll_clk:pll|                                ; 0 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |lab1_demo|pll_clk:pll                                                                                                              ; pll_clk          ; pll_clk      ;
+;       |pll_clk_0002:pll_clk_inst|               ; 0 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |lab1_demo|pll_clk:pll|pll_clk_0002:pll_clk_inst                                                                                    ; pll_clk_0002     ; pll_clk      ;
+;          |altera_pll:altera_pll_i|              ; 0 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |lab1_demo|pll_clk:pll|pll_clk_0002:pll_clk_inst|altera_pll:altera_pll_i                                                            ; altera_pll       ; work         ;
+;    |wavegen_codec:wave_out|                     ; 388 (0)             ; 1425 (0)                  ; 61440             ; 19         ; 0    ; 0            ; |lab1_demo|wavegen_codec:wave_out                                                                                                   ; wavegen_codec    ; work         ;
+;       |audio_codec:ac|                          ; 37 (37)             ; 42 (42)                   ; 0                 ; 0          ; 0    ; 0            ; |lab1_demo|wavegen_codec:wave_out|audio_codec:ac                                                                                    ; audio_codec      ; work         ;
+;       |filter:u_filter|                         ; 141 (141)           ; 1184 (1184)               ; 0                 ; 19         ; 0    ; 0            ; |lab1_demo|wavegen_codec:wave_out|filter:u_filter                                                                                   ; filter           ; work         ;
+;       |wave_gen_16b:wg|                         ; 210 (191)           ; 199 (167)                 ; 61440             ; 0          ; 0    ; 0            ; |lab1_demo|wavegen_codec:wave_out|wave_gen_16b:wg                                                                                   ; wave_gen_16b     ; work         ;
+;          |ecg_lut_16b:rom_ecg|                  ; 0 (0)               ; 0 (0)                     ; 15360             ; 0          ; 0    ; 0            ; |lab1_demo|wavegen_codec:wave_out|wave_gen_16b:wg|ecg_lut_16b:rom_ecg                                                               ; ecg_lut_16b      ; work         ;
+;             |altsyncram:rom_rtl_0|              ; 0 (0)               ; 0 (0)                     ; 15360             ; 0          ; 0    ; 0            ; |lab1_demo|wavegen_codec:wave_out|wave_gen_16b:wg|ecg_lut_16b:rom_ecg|altsyncram:rom_rtl_0                                          ; altsyncram       ; work         ;
+;                |altsyncram_2hd1:auto_generated| ; 0 (0)               ; 0 (0)                     ; 15360             ; 0          ; 0    ; 0            ; |lab1_demo|wavegen_codec:wave_out|wave_gen_16b:wg|ecg_lut_16b:rom_ecg|altsyncram:rom_rtl_0|altsyncram_2hd1:auto_generated           ; altsyncram_2hd1  ; work         ;
+;          |lfsr:noise_gen|                       ; 19 (19)             ; 32 (32)                   ; 0                 ; 0          ; 0    ; 0            ; |lab1_demo|wavegen_codec:wave_out|wave_gen_16b:wg|lfsr:noise_gen                                                                    ; lfsr             ; work         ;
+;          |sawtooth_lut_16b:rom_sawtooth|        ; 0 (0)               ; 0 (0)                     ; 15360             ; 0          ; 0    ; 0            ; |lab1_demo|wavegen_codec:wave_out|wave_gen_16b:wg|sawtooth_lut_16b:rom_sawtooth                                                     ; sawtooth_lut_16b ; work         ;
+;             |altsyncram:rom_rtl_0|              ; 0 (0)               ; 0 (0)                     ; 15360             ; 0          ; 0    ; 0            ; |lab1_demo|wavegen_codec:wave_out|wave_gen_16b:wg|sawtooth_lut_16b:rom_sawtooth|altsyncram:rom_rtl_0                                ; altsyncram       ; work         ;
+;                |altsyncram_18e1:auto_generated| ; 0 (0)               ; 0 (0)                     ; 15360             ; 0          ; 0    ; 0            ; |lab1_demo|wavegen_codec:wave_out|wave_gen_16b:wg|sawtooth_lut_16b:rom_sawtooth|altsyncram:rom_rtl_0|altsyncram_18e1:auto_generated ; altsyncram_18e1  ; work         ;
+;          |sine_lut_16b:rom_sine|                ; 0 (0)               ; 0 (0)                     ; 15360             ; 0          ; 0    ; 0            ; |lab1_demo|wavegen_codec:wave_out|wave_gen_16b:wg|sine_lut_16b:rom_sine                                                             ; sine_lut_16b     ; work         ;
+;             |altsyncram:rom_rtl_0|              ; 0 (0)               ; 0 (0)                     ; 15360             ; 0          ; 0    ; 0            ; |lab1_demo|wavegen_codec:wave_out|wave_gen_16b:wg|sine_lut_16b:rom_sine|altsyncram:rom_rtl_0                                        ; altsyncram       ; work         ;
+;                |altsyncram_mrd1:auto_generated| ; 0 (0)               ; 0 (0)                     ; 15360             ; 0          ; 0    ; 0            ; |lab1_demo|wavegen_codec:wave_out|wave_gen_16b:wg|sine_lut_16b:rom_sine|altsyncram:rom_rtl_0|altsyncram_mrd1:auto_generated         ; altsyncram_mrd1  ; work         ;
+;          |triangle_lut_16b:rom_triangle|        ; 0 (0)               ; 0 (0)                     ; 15360             ; 0          ; 0    ; 0            ; |lab1_demo|wavegen_codec:wave_out|wave_gen_16b:wg|triangle_lut_16b:rom_triangle                                                     ; triangle_lut_16b ; work         ;
+;             |altsyncram:rom_rtl_0|              ; 0 (0)               ; 0 (0)                     ; 15360             ; 0          ; 0    ; 0            ; |lab1_demo|wavegen_codec:wave_out|wave_gen_16b:wg|triangle_lut_16b:rom_triangle|altsyncram:rom_rtl_0                                ; altsyncram       ; work         ;
+;                |altsyncram_47e1:auto_generated| ; 0 (0)               ; 0 (0)                     ; 15360             ; 0          ; 0    ; 0            ; |lab1_demo|wavegen_codec:wave_out|wave_gen_16b:wg|triangle_lut_16b:rom_triangle|altsyncram:rom_rtl_0|altsyncram_47e1:auto_generated ; altsyncram_47e1  ; work         ;
++-------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------------+------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                                                                                                            ;
++-------------------------------------------------------------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+-------+-----------------------------------------------------+
+; Name                                                                                                                                ; Type ; Mode ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size  ; MIF                                                 ;
++-------------------------------------------------------------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+-------+-----------------------------------------------------+
+; wavegen_codec:wave_out|wave_gen_16b:wg|ecg_lut_16b:rom_ecg|altsyncram:rom_rtl_0|altsyncram_2hd1:auto_generated|ALTSYNCRAM           ; AUTO ; ROM  ; 1024         ; 16           ; --           ; --           ; 16384 ; db/lab1_demo.ram0_ecg_lut_16b_93421404.hdl.mif      ;
+; wavegen_codec:wave_out|wave_gen_16b:wg|sawtooth_lut_16b:rom_sawtooth|altsyncram:rom_rtl_0|altsyncram_18e1:auto_generated|ALTSYNCRAM ; AUTO ; ROM  ; 1024         ; 16           ; --           ; --           ; 16384 ; db/lab1_demo.ram0_sawtooth_lut_16b_17db4b39.hdl.mif ;
+; wavegen_codec:wave_out|wave_gen_16b:wg|sine_lut_16b:rom_sine|altsyncram:rom_rtl_0|altsyncram_mrd1:auto_generated|ALTSYNCRAM         ; AUTO ; ROM  ; 1024         ; 16           ; --           ; --           ; 16384 ; db/lab1_demo.ram0_sine_lut_16b_d9458eff.hdl.mif     ;
+; wavegen_codec:wave_out|wave_gen_16b:wg|triangle_lut_16b:rom_triangle|altsyncram:rom_rtl_0|altsyncram_47e1:auto_generated|ALTSYNCRAM ; AUTO ; ROM  ; 1024         ; 16           ; --           ; --           ; 16384 ; db/lab1_demo.ram0_triangle_lut_16b_a89b6f06.hdl.mif ;
++-------------------------------------------------------------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+-------+-----------------------------------------------------+
+
+
++---------------------------------------------------------+
+; Analysis & Synthesis DSP Block Usage Summary            ;
++-------------------------------------------+-------------+
+; Statistic                                 ; Number Used ;
++-------------------------------------------+-------------+
+; Two Independent 18x18                     ; 1           ;
+; Sum of two 18x18                          ; 18          ;
+; Total number of DSP blocks                ; 19          ;
+;                                           ;             ;
+; Fixed Point Signed Multiplier             ; 9           ;
+; Fixed Point Mixed Sign Multiplier         ; 28          ;
+; Fixed Point Dedicated Pre-Adder           ; 37          ;
+; Fixed Point Dedicated Coefficient Storage ; 37          ;
+; Fixed Point Dedicated Output Adder Chain  ; 9           ;
++-------------------------------------------+-------------+
+
+
++----------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis IP Cores Summary                                                                    ;
++--------+--------------+---------+--------------+--------------+------------------------+-----------------+
+; Vendor ; IP Core Name ; Version ; Release Date ; License Type ; Entity Instance        ; IP Include File ;
++--------+--------------+---------+--------------+--------------+------------------------+-----------------+
+; Altera ; altera_pll   ; 23.1    ; N/A          ; N/A          ; |lab1_demo|pll_clk:pll ; pll_clk.v       ;
++--------+--------------+---------+--------------+--------------+------------------------+-----------------+
+
+
+Encoding Type:  One-Hot
++----------------------------------------------------------------------------------------------+
+; State Machine - |lab1_demo|i2c_av_config:setting_audio_chip|control_state                    ;
++------------------+------------------+------------------+------------------+------------------+
+; Name             ; control_state.11 ; control_state.10 ; control_state.01 ; control_state.00 ;
++------------------+------------------+------------------+------------------+------------------+
+; control_state.00 ; 0                ; 0                ; 0                ; 0                ;
+; control_state.01 ; 0                ; 0                ; 1                ; 1                ;
+; control_state.10 ; 0                ; 1                ; 0                ; 1                ;
+; control_state.11 ; 1                ; 0                ; 0                ; 1                ;
++------------------+------------------+------------------+------------------+------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                                   ;
++------------------------------------------------------------------------+-----------------------------------------------------------------------------+
+; Register name                                                          ; Reason for Removal                                                          ;
++------------------------------------------------------------------------+-----------------------------------------------------------------------------+
+; wavegen_codec:wave_out|wave_gen_16b:wg|square_amp[14..16]              ; Stuck at GND due to stuck port data_in                                      ;
+; i2c_av_config:setting_audio_chip|i2c_data[7,13..17]                    ; Stuck at GND due to stuck port data_in                                      ;
+; i2c_av_config:setting_audio_chip|i2c_data[18]                          ; Stuck at VCC due to stuck port data_in                                      ;
+; i2c_av_config:setting_audio_chip|i2c_data[19]                          ; Stuck at GND due to stuck port data_in                                      ;
+; i2c_av_config:setting_audio_chip|i2c_data[20,21]                       ; Stuck at VCC due to stuck port data_in                                      ;
+; i2c_av_config:setting_audio_chip|i2c_data[22,23]                       ; Stuck at GND due to stuck port data_in                                      ;
+; i2c_av_config:setting_audio_chip|i2c_controller:control|data[7,13..17] ; Stuck at GND due to stuck port data_in                                      ;
+; i2c_av_config:setting_audio_chip|i2c_controller:control|data[18]       ; Stuck at VCC due to stuck port data_in                                      ;
+; i2c_av_config:setting_audio_chip|i2c_controller:control|data[19]       ; Stuck at GND due to stuck port data_in                                      ;
+; i2c_av_config:setting_audio_chip|i2c_controller:control|data[20,21]    ; Stuck at VCC due to stuck port data_in                                      ;
+; i2c_av_config:setting_audio_chip|i2c_controller:control|data[22,23]    ; Stuck at GND due to stuck port data_in                                      ;
+; wavegen_codec:wave_out|wave_gen_16b:wg|square_noise[15]                ; Stuck at GND due to stuck port data_in                                      ;
+; wavegen_codec:wave_out|wave_gen_16b:wg|ecg_amp[16]                     ; Lost fanout                                                                 ;
+; wavegen_codec:wave_out|wave_gen_16b:wg|sine_amp[16]                    ; Lost fanout                                                                 ;
+; wavegen_codec:wave_out|wave_gen_16b:wg|sawtooth_amp[16]                ; Lost fanout                                                                 ;
+; wavegen_codec:wave_out|wave_gen_16b:wg|tri_amp[16]                     ; Lost fanout                                                                 ;
+; wavegen_codec:wave_out|wave_gen_16b:wg|tri_amp[15]                     ; Merged with wavegen_codec:wave_out|wave_gen_16b:wg|tri_amp[14]              ;
+; i2c_av_config:setting_audio_chip|i2c_controller:control|data[5,6,8]    ; Merged with i2c_av_config:setting_audio_chip|i2c_controller:control|data[3] ;
+; wavegen_codec:wave_out|wave_gen_16b:wg|square_amp[1..12]               ; Merged with wavegen_codec:wave_out|wave_gen_16b:wg|square_amp[0]            ;
+; i2c_av_config:setting_audio_chip|i2c_data[5,6,8]                       ; Merged with i2c_av_config:setting_audio_chip|i2c_data[3]                    ;
+; wavegen_codec:wave_out|wave_gen_16b:wg|sine_amp[15]                    ; Merged with wavegen_codec:wave_out|wave_gen_16b:wg|sine_amp[14]             ;
+; wavegen_codec:wave_out|wave_gen_16b:wg|sawtooth_amp[15]                ; Merged with wavegen_codec:wave_out|wave_gen_16b:wg|sawtooth_amp[14]         ;
+; wavegen_codec:wave_out|wave_gen_16b:wg|ecg_amp[15]                     ; Merged with wavegen_codec:wave_out|wave_gen_16b:wg|ecg_amp[14]              ;
+; i2c_av_config:setting_audio_chip|control_state~6                       ; Lost fanout                                                                 ;
+; i2c_av_config:setting_audio_chip|control_state~7                       ; Lost fanout                                                                 ;
+; Total Number of Removed Registers = 56                                 ;                                                                             ;
++------------------------------------------------------------------------+-----------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                          ;
++-------------------------------------------------------+---------------------------+------------------------------------------------------------------+
+; Register name                                         ; Reason for Removal        ; Registers Removed due to This Register                           ;
++-------------------------------------------------------+---------------------------+------------------------------------------------------------------+
+; wavegen_codec:wave_out|wave_gen_16b:wg|square_amp[14] ; Stuck at GND              ; wavegen_codec:wave_out|wave_gen_16b:wg|square_noise[15]          ;
+;                                                       ; due to stuck port data_in ;                                                                  ;
+; i2c_av_config:setting_audio_chip|i2c_data[7]          ; Stuck at GND              ; i2c_av_config:setting_audio_chip|i2c_controller:control|data[7]  ;
+;                                                       ; due to stuck port data_in ;                                                                  ;
+; i2c_av_config:setting_audio_chip|i2c_data[13]         ; Stuck at GND              ; i2c_av_config:setting_audio_chip|i2c_controller:control|data[13] ;
+;                                                       ; due to stuck port data_in ;                                                                  ;
+; i2c_av_config:setting_audio_chip|i2c_data[14]         ; Stuck at GND              ; i2c_av_config:setting_audio_chip|i2c_controller:control|data[14] ;
+;                                                       ; due to stuck port data_in ;                                                                  ;
+; i2c_av_config:setting_audio_chip|i2c_data[15]         ; Stuck at GND              ; i2c_av_config:setting_audio_chip|i2c_controller:control|data[15] ;
+;                                                       ; due to stuck port data_in ;                                                                  ;
+; i2c_av_config:setting_audio_chip|i2c_data[16]         ; Stuck at GND              ; i2c_av_config:setting_audio_chip|i2c_controller:control|data[16] ;
+;                                                       ; due to stuck port data_in ;                                                                  ;
+; i2c_av_config:setting_audio_chip|i2c_data[17]         ; Stuck at GND              ; i2c_av_config:setting_audio_chip|i2c_controller:control|data[17] ;
+;                                                       ; due to stuck port data_in ;                                                                  ;
+; i2c_av_config:setting_audio_chip|i2c_data[18]         ; Stuck at VCC              ; i2c_av_config:setting_audio_chip|i2c_controller:control|data[18] ;
+;                                                       ; due to stuck port data_in ;                                                                  ;
+; i2c_av_config:setting_audio_chip|i2c_data[19]         ; Stuck at GND              ; i2c_av_config:setting_audio_chip|i2c_controller:control|data[19] ;
+;                                                       ; due to stuck port data_in ;                                                                  ;
+; i2c_av_config:setting_audio_chip|i2c_data[20]         ; Stuck at VCC              ; i2c_av_config:setting_audio_chip|i2c_controller:control|data[20] ;
+;                                                       ; due to stuck port data_in ;                                                                  ;
+; i2c_av_config:setting_audio_chip|i2c_data[21]         ; Stuck at VCC              ; i2c_av_config:setting_audio_chip|i2c_controller:control|data[21] ;
+;                                                       ; due to stuck port data_in ;                                                                  ;
+; i2c_av_config:setting_audio_chip|i2c_data[22]         ; Stuck at GND              ; i2c_av_config:setting_audio_chip|i2c_controller:control|data[22] ;
+;                                                       ; due to stuck port data_in ;                                                                  ;
+; i2c_av_config:setting_audio_chip|i2c_data[23]         ; Stuck at GND              ; i2c_av_config:setting_audio_chip|i2c_controller:control|data[23] ;
+;                                                       ; due to stuck port data_in ;                                                                  ;
++-------------------------------------------------------+---------------------------+------------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 1469  ;
+; Number of registers using Synchronous Clear  ; 1368  ;
+; Number of registers using Synchronous Load   ; 113   ;
+; Number of registers using Asynchronous Clear ; 32    ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 1278  ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++----------------------------------------------------------------------------+
+; Inverted Register Statistics                                               ;
++------------------------------------------------------------------+---------+
+; Inverted Register                                                ; Fan out ;
++------------------------------------------------------------------+---------+
+; i2c_av_config:setting_audio_chip|i2c_controller:control|sdat     ; 3       ;
+; wavegen_codec:wave_out|wave_gen_16b:wg|lfsr:noise_gen|r_lfsr[0]  ; 9       ;
+; wavegen_codec:wave_out|wave_gen_16b:wg|lfsr:noise_gen|r_lfsr[2]  ; 6       ;
+; wavegen_codec:wave_out|wave_gen_16b:wg|lfsr:noise_gen|r_lfsr[6]  ; 6       ;
+; wavegen_codec:wave_out|wave_gen_16b:wg|lfsr:noise_gen|r_lfsr[8]  ; 6       ;
+; wavegen_codec:wave_out|wave_gen_16b:wg|lfsr:noise_gen|r_lfsr[9]  ; 6       ;
+; wavegen_codec:wave_out|wave_gen_16b:wg|lfsr:noise_gen|r_lfsr[13] ; 1       ;
+; wavegen_codec:wave_out|wave_gen_16b:wg|lfsr:noise_gen|r_lfsr[16] ; 1       ;
+; wavegen_codec:wave_out|wave_gen_16b:wg|lfsr:noise_gen|r_lfsr[21] ; 1       ;
+; wavegen_codec:wave_out|wave_gen_16b:wg|lfsr:noise_gen|r_lfsr[22] ; 1       ;
+; wavegen_codec:wave_out|wave_gen_16b:wg|lfsr:noise_gen|r_lfsr[23] ; 1       ;
+; wavegen_codec:wave_out|wave_gen_16b:wg|lfsr:noise_gen|r_lfsr[26] ; 1       ;
+; wavegen_codec:wave_out|wave_gen_16b:wg|lfsr:noise_gen|r_lfsr[27] ; 1       ;
+; wavegen_codec:wave_out|wave_gen_16b:wg|lfsr:noise_gen|r_lfsr[29] ; 1       ;
+; wavegen_codec:wave_out|wave_gen_16b:wg|lfsr:noise_gen|r_lfsr[31] ; 1       ;
+; Total number of inverted registers = 15                          ;         ;
++------------------------------------------------------------------+---------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Packed Into Inferred Megafunctions                                                                                                                          ;
++-------------------------------------------------------------------------------+--------------------------------------------------------------------------------+------+
+; Register Name                                                                 ; Megafunction                                                                   ; Type ;
++-------------------------------------------------------------------------------+--------------------------------------------------------------------------------+------+
+; wavegen_codec:wave_out|wave_gen_16b:wg|ecg_lut_16b:rom_ecg|q[1..15]           ; wavegen_codec:wave_out|wave_gen_16b:wg|ecg_lut_16b:rom_ecg|rom_rtl_0           ; RAM  ;
+; wavegen_codec:wave_out|wave_gen_16b:wg|sawtooth_lut_16b:rom_sawtooth|q[1..15] ; wavegen_codec:wave_out|wave_gen_16b:wg|sawtooth_lut_16b:rom_sawtooth|rom_rtl_0 ; RAM  ;
+; wavegen_codec:wave_out|wave_gen_16b:wg|triangle_lut_16b:rom_triangle|q[1..15] ; wavegen_codec:wave_out|wave_gen_16b:wg|triangle_lut_16b:rom_triangle|rom_rtl_0 ; RAM  ;
+; wavegen_codec:wave_out|wave_gen_16b:wg|sine_lut_16b:rom_sine|q[1..15]         ; wavegen_codec:wave_out|wave_gen_16b:wg|sine_lut_16b:rom_sine|rom_rtl_0         ; RAM  ;
++-------------------------------------------------------------------------------+--------------------------------------------------------------------------------+------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                   ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                         ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------+
+; 3:1                ; 78 bits   ; 156 LEs       ; 78 LEs               ; 78 LEs                 ; Yes        ; |lab1_demo|wavegen_codec:wave_out|wave_gen_16b:wg|tri_noise[4]                     ;
+; 3:1                ; 56 bits   ; 112 LEs       ; 0 LEs                ; 112 LEs                ; Yes        ; |lab1_demo|wavegen_codec:wave_out|wave_gen_16b:wg|sawtooth_amp[10]                 ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |lab1_demo|i2c_av_config:setting_audio_chip|lut_index[0]                           ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |lab1_demo|i2c_av_config:setting_audio_chip|i2c_controller:control|sclk_divider[6] ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |lab1_demo|i2c_av_config:setting_audio_chip|i2c_controller:control|stage[0]        ;
+; 3:1                ; 1184 bits ; 2368 LEs      ; 0 LEs                ; 2368 LEs               ; Yes        ; |lab1_demo|wavegen_codec:wave_out|filter:u_filter|sample_delay[37][9]              ;
+; 8:1                ; 15 bits   ; 75 LEs        ; 30 LEs               ; 45 LEs                 ; Yes        ; |lab1_demo|wavegen_codec:wave_out|wave_gen_16b:wg|data_out[5]                      ;
+; 4:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |lab1_demo|wavegen_codec:wave_out|wave_gen_16b:wg|counter_1[4]                     ;
+; 4:1                ; 15 bits   ; 30 LEs        ; 0 LEs                ; 30 LEs                 ; Yes        ; |lab1_demo|wavegen_codec:wave_out|audio_codec:ac|shift_out[10]                     ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |lab1_demo|i2c_av_config:setting_audio_chip|control_state                          ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |lab1_demo|wavegen_codec:wave_out|audio_codec:ac|shift_out                         ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for wavegen_codec:wave_out|wave_gen_16b:wg|ecg_lut_16b:rom_ecg|altsyncram:rom_rtl_0|altsyncram_2hd1:auto_generated ;
++---------------------------------+--------------------+------+-------------------------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                                      ;
++---------------------------------+--------------------+------+-------------------------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                                       ;
++---------------------------------+--------------------+------+-------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for wavegen_codec:wave_out|wave_gen_16b:wg|sawtooth_lut_16b:rom_sawtooth|altsyncram:rom_rtl_0|altsyncram_18e1:auto_generated ;
++---------------------------------+--------------------+------+-----------------------------------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                                                ;
++---------------------------------+--------------------+------+-----------------------------------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                                                 ;
++---------------------------------+--------------------+------+-----------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for wavegen_codec:wave_out|wave_gen_16b:wg|triangle_lut_16b:rom_triangle|altsyncram:rom_rtl_0|altsyncram_47e1:auto_generated ;
++---------------------------------+--------------------+------+-----------------------------------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                                                ;
++---------------------------------+--------------------+------+-----------------------------------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                                                 ;
++---------------------------------+--------------------+------+-----------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for wavegen_codec:wave_out|wave_gen_16b:wg|sine_lut_16b:rom_sine|altsyncram:rom_rtl_0|altsyncram_mrd1:auto_generated ;
++---------------------------------+--------------------+------+---------------------------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                                        ;
++---------------------------------+--------------------+------+---------------------------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                                         ;
++---------------------------------+--------------------+------+---------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: pll_clk:pll|pll_clk_0002:pll_clk_inst|altera_pll:altera_pll_i ;
++--------------------------------------+------------------------+--------------------------------------------+
+; Parameter Name                       ; Value                  ; Type                                       ;
++--------------------------------------+------------------------+--------------------------------------------+
+; reference_clock_frequency            ; 50.0 MHz               ; String                                     ;
+; fractional_vco_multiplier            ; false                  ; String                                     ;
+; pll_type                             ; General                ; String                                     ;
+; pll_subtype                          ; General                ; String                                     ;
+; number_of_clocks                     ; 1                      ; Signed Integer                             ;
+; operation_mode                       ; direct                 ; String                                     ;
+; deserialization_factor               ; 4                      ; Signed Integer                             ;
+; data_rate                            ; 0                      ; Signed Integer                             ;
+; sim_additional_refclk_cycles_to_lock ; 0                      ; Signed Integer                             ;
+; output_clock_frequency0              ; 12.000000 MHz          ; String                                     ;
+; phase_shift0                         ; 0 ps                   ; String                                     ;
+; duty_cycle0                          ; 50                     ; Signed Integer                             ;
+; output_clock_frequency1              ; 0 MHz                  ; String                                     ;
+; phase_shift1                         ; 0 ps                   ; String                                     ;
+; duty_cycle1                          ; 50                     ; Signed Integer                             ;
+; output_clock_frequency2              ; 0 MHz                  ; String                                     ;
+; phase_shift2                         ; 0 ps                   ; String                                     ;
+; duty_cycle2                          ; 50                     ; Signed Integer                             ;
+; output_clock_frequency3              ; 0 MHz                  ; String                                     ;
+; phase_shift3                         ; 0 ps                   ; String                                     ;
+; duty_cycle3                          ; 50                     ; Signed Integer                             ;
+; output_clock_frequency4              ; 0 MHz                  ; String                                     ;
+; phase_shift4                         ; 0 ps                   ; String                                     ;
+; duty_cycle4                          ; 50                     ; Signed Integer                             ;
+; output_clock_frequency5              ; 0 MHz                  ; String                                     ;
+; phase_shift5                         ; 0 ps                   ; String                                     ;
+; duty_cycle5                          ; 50                     ; Signed Integer                             ;
+; output_clock_frequency6              ; 0 MHz                  ; String                                     ;
+; phase_shift6                         ; 0 ps                   ; String                                     ;
+; duty_cycle6                          ; 50                     ; Signed Integer                             ;
+; output_clock_frequency7              ; 0 MHz                  ; String                                     ;
+; phase_shift7                         ; 0 ps                   ; String                                     ;
+; duty_cycle7                          ; 50                     ; Signed Integer                             ;
+; output_clock_frequency8              ; 0 MHz                  ; String                                     ;
+; phase_shift8                         ; 0 ps                   ; String                                     ;
+; duty_cycle8                          ; 50                     ; Signed Integer                             ;
+; output_clock_frequency9              ; 0 MHz                  ; String                                     ;
+; phase_shift9                         ; 0 ps                   ; String                                     ;
+; duty_cycle9                          ; 50                     ; Signed Integer                             ;
+; output_clock_frequency10             ; 0 MHz                  ; String                                     ;
+; phase_shift10                        ; 0 ps                   ; String                                     ;
+; duty_cycle10                         ; 50                     ; Signed Integer                             ;
+; output_clock_frequency11             ; 0 MHz                  ; String                                     ;
+; phase_shift11                        ; 0 ps                   ; String                                     ;
+; duty_cycle11                         ; 50                     ; Signed Integer                             ;
+; output_clock_frequency12             ; 0 MHz                  ; String                                     ;
+; phase_shift12                        ; 0 ps                   ; String                                     ;
+; duty_cycle12                         ; 50                     ; Signed Integer                             ;
+; output_clock_frequency13             ; 0 MHz                  ; String                                     ;
+; phase_shift13                        ; 0 ps                   ; String                                     ;
+; duty_cycle13                         ; 50                     ; Signed Integer                             ;
+; output_clock_frequency14             ; 0 MHz                  ; String                                     ;
+; phase_shift14                        ; 0 ps                   ; String                                     ;
+; duty_cycle14                         ; 50                     ; Signed Integer                             ;
+; output_clock_frequency15             ; 0 MHz                  ; String                                     ;
+; phase_shift15                        ; 0 ps                   ; String                                     ;
+; duty_cycle15                         ; 50                     ; Signed Integer                             ;
+; output_clock_frequency16             ; 0 MHz                  ; String                                     ;
+; phase_shift16                        ; 0 ps                   ; String                                     ;
+; duty_cycle16                         ; 50                     ; Signed Integer                             ;
+; output_clock_frequency17             ; 0 MHz                  ; String                                     ;
+; phase_shift17                        ; 0 ps                   ; String                                     ;
+; duty_cycle17                         ; 50                     ; Signed Integer                             ;
+; clock_name_0                         ;                        ; String                                     ;
+; clock_name_1                         ;                        ; String                                     ;
+; clock_name_2                         ;                        ; String                                     ;
+; clock_name_3                         ;                        ; String                                     ;
+; clock_name_4                         ;                        ; String                                     ;
+; clock_name_5                         ;                        ; String                                     ;
+; clock_name_6                         ;                        ; String                                     ;
+; clock_name_7                         ;                        ; String                                     ;
+; clock_name_8                         ;                        ; String                                     ;
+; clock_name_global_0                  ; false                  ; String                                     ;
+; clock_name_global_1                  ; false                  ; String                                     ;
+; clock_name_global_2                  ; false                  ; String                                     ;
+; clock_name_global_3                  ; false                  ; String                                     ;
+; clock_name_global_4                  ; false                  ; String                                     ;
+; clock_name_global_5                  ; false                  ; String                                     ;
+; clock_name_global_6                  ; false                  ; String                                     ;
+; clock_name_global_7                  ; false                  ; String                                     ;
+; clock_name_global_8                  ; false                  ; String                                     ;
+; m_cnt_hi_div                         ; 1                      ; Signed Integer                             ;
+; m_cnt_lo_div                         ; 1                      ; Signed Integer                             ;
+; m_cnt_bypass_en                      ; false                  ; String                                     ;
+; m_cnt_odd_div_duty_en                ; false                  ; String                                     ;
+; n_cnt_hi_div                         ; 1                      ; Signed Integer                             ;
+; n_cnt_lo_div                         ; 1                      ; Signed Integer                             ;
+; n_cnt_bypass_en                      ; false                  ; String                                     ;
+; n_cnt_odd_div_duty_en                ; false                  ; String                                     ;
+; c_cnt_hi_div0                        ; 1                      ; Signed Integer                             ;
+; c_cnt_lo_div0                        ; 1                      ; Signed Integer                             ;
+; c_cnt_bypass_en0                     ; false                  ; String                                     ;
+; c_cnt_in_src0                        ; ph_mux_clk             ; String                                     ;
+; c_cnt_odd_div_duty_en0               ; false                  ; String                                     ;
+; c_cnt_prst0                          ; 1                      ; Signed Integer                             ;
+; c_cnt_ph_mux_prst0                   ; 0                      ; Signed Integer                             ;
+; c_cnt_hi_div1                        ; 1                      ; Signed Integer                             ;
+; c_cnt_lo_div1                        ; 1                      ; Signed Integer                             ;
+; c_cnt_bypass_en1                     ; false                  ; String                                     ;
+; c_cnt_in_src1                        ; ph_mux_clk             ; String                                     ;
+; c_cnt_odd_div_duty_en1               ; false                  ; String                                     ;
+; c_cnt_prst1                          ; 1                      ; Signed Integer                             ;
+; c_cnt_ph_mux_prst1                   ; 0                      ; Signed Integer                             ;
+; c_cnt_hi_div2                        ; 1                      ; Signed Integer                             ;
+; c_cnt_lo_div2                        ; 1                      ; Signed Integer                             ;
+; c_cnt_bypass_en2                     ; false                  ; String                                     ;
+; c_cnt_in_src2                        ; ph_mux_clk             ; String                                     ;
+; c_cnt_odd_div_duty_en2               ; false                  ; String                                     ;
+; c_cnt_prst2                          ; 1                      ; Signed Integer                             ;
+; c_cnt_ph_mux_prst2                   ; 0                      ; Signed Integer                             ;
+; c_cnt_hi_div3                        ; 1                      ; Signed Integer                             ;
+; c_cnt_lo_div3                        ; 1                      ; Signed Integer                             ;
+; c_cnt_bypass_en3                     ; false                  ; String                                     ;
+; c_cnt_in_src3                        ; ph_mux_clk             ; String                                     ;
+; c_cnt_odd_div_duty_en3               ; false                  ; String                                     ;
+; c_cnt_prst3                          ; 1                      ; Signed Integer                             ;
+; c_cnt_ph_mux_prst3                   ; 0                      ; Signed Integer                             ;
+; c_cnt_hi_div4                        ; 1                      ; Signed Integer                             ;
+; c_cnt_lo_div4                        ; 1                      ; Signed Integer                             ;
+; c_cnt_bypass_en4                     ; false                  ; String                                     ;
+; c_cnt_in_src4                        ; ph_mux_clk             ; String                                     ;
+; c_cnt_odd_div_duty_en4               ; false                  ; String                                     ;
+; c_cnt_prst4                          ; 1                      ; Signed Integer                             ;
+; c_cnt_ph_mux_prst4                   ; 0                      ; Signed Integer                             ;
+; c_cnt_hi_div5                        ; 1                      ; Signed Integer                             ;
+; c_cnt_lo_div5                        ; 1                      ; Signed Integer                             ;
+; c_cnt_bypass_en5                     ; false                  ; String                                     ;
+; c_cnt_in_src5                        ; ph_mux_clk             ; String                                     ;
+; c_cnt_odd_div_duty_en5               ; false                  ; String                                     ;
+; c_cnt_prst5                          ; 1                      ; Signed Integer                             ;
+; c_cnt_ph_mux_prst5                   ; 0                      ; Signed Integer                             ;
+; c_cnt_hi_div6                        ; 1                      ; Signed Integer                             ;
+; c_cnt_lo_div6                        ; 1                      ; Signed Integer                             ;
+; c_cnt_bypass_en6                     ; false                  ; String                                     ;
+; c_cnt_in_src6                        ; ph_mux_clk             ; String                                     ;
+; c_cnt_odd_div_duty_en6               ; false                  ; String                                     ;
+; c_cnt_prst6                          ; 1                      ; Signed Integer                             ;
+; c_cnt_ph_mux_prst6                   ; 0                      ; Signed Integer                             ;
+; c_cnt_hi_div7                        ; 1                      ; Signed Integer                             ;
+; c_cnt_lo_div7                        ; 1                      ; Signed Integer                             ;
+; c_cnt_bypass_en7                     ; false                  ; String                                     ;
+; c_cnt_in_src7                        ; ph_mux_clk             ; String                                     ;
+; c_cnt_odd_div_duty_en7               ; false                  ; String                                     ;
+; c_cnt_prst7                          ; 1                      ; Signed Integer                             ;
+; c_cnt_ph_mux_prst7                   ; 0                      ; Signed Integer                             ;
+; c_cnt_hi_div8                        ; 1                      ; Signed Integer                             ;
+; c_cnt_lo_div8                        ; 1                      ; Signed Integer                             ;
+; c_cnt_bypass_en8                     ; false                  ; String                                     ;
+; c_cnt_in_src8                        ; ph_mux_clk             ; String                                     ;
+; c_cnt_odd_div_duty_en8               ; false                  ; String                                     ;
+; c_cnt_prst8                          ; 1                      ; Signed Integer                             ;
+; c_cnt_ph_mux_prst8                   ; 0                      ; Signed Integer                             ;
+; c_cnt_hi_div9                        ; 1                      ; Signed Integer                             ;
+; c_cnt_lo_div9                        ; 1                      ; Signed Integer                             ;
+; c_cnt_bypass_en9                     ; false                  ; String                                     ;
+; c_cnt_in_src9                        ; ph_mux_clk             ; String                                     ;
+; c_cnt_odd_div_duty_en9               ; false                  ; String                                     ;
+; c_cnt_prst9                          ; 1                      ; Signed Integer                             ;
+; c_cnt_ph_mux_prst9                   ; 0                      ; Signed Integer                             ;
+; c_cnt_hi_div10                       ; 1                      ; Signed Integer                             ;
+; c_cnt_lo_div10                       ; 1                      ; Signed Integer                             ;
+; c_cnt_bypass_en10                    ; false                  ; String                                     ;
+; c_cnt_in_src10                       ; ph_mux_clk             ; String                                     ;
+; c_cnt_odd_div_duty_en10              ; false                  ; String                                     ;
+; c_cnt_prst10                         ; 1                      ; Signed Integer                             ;
+; c_cnt_ph_mux_prst10                  ; 0                      ; Signed Integer                             ;
+; c_cnt_hi_div11                       ; 1                      ; Signed Integer                             ;
+; c_cnt_lo_div11                       ; 1                      ; Signed Integer                             ;
+; c_cnt_bypass_en11                    ; false                  ; String                                     ;
+; c_cnt_in_src11                       ; ph_mux_clk             ; String                                     ;
+; c_cnt_odd_div_duty_en11              ; false                  ; String                                     ;
+; c_cnt_prst11                         ; 1                      ; Signed Integer                             ;
+; c_cnt_ph_mux_prst11                  ; 0                      ; Signed Integer                             ;
+; c_cnt_hi_div12                       ; 1                      ; Signed Integer                             ;
+; c_cnt_lo_div12                       ; 1                      ; Signed Integer                             ;
+; c_cnt_bypass_en12                    ; false                  ; String                                     ;
+; c_cnt_in_src12                       ; ph_mux_clk             ; String                                     ;
+; c_cnt_odd_div_duty_en12              ; false                  ; String                                     ;
+; c_cnt_prst12                         ; 1                      ; Signed Integer                             ;
+; c_cnt_ph_mux_prst12                  ; 0                      ; Signed Integer                             ;
+; c_cnt_hi_div13                       ; 1                      ; Signed Integer                             ;
+; c_cnt_lo_div13                       ; 1                      ; Signed Integer                             ;
+; c_cnt_bypass_en13                    ; false                  ; String                                     ;
+; c_cnt_in_src13                       ; ph_mux_clk             ; String                                     ;
+; c_cnt_odd_div_duty_en13              ; false                  ; String                                     ;
+; c_cnt_prst13                         ; 1                      ; Signed Integer                             ;
+; c_cnt_ph_mux_prst13                  ; 0                      ; Signed Integer                             ;
+; c_cnt_hi_div14                       ; 1                      ; Signed Integer                             ;
+; c_cnt_lo_div14                       ; 1                      ; Signed Integer                             ;
+; c_cnt_bypass_en14                    ; false                  ; String                                     ;
+; c_cnt_in_src14                       ; ph_mux_clk             ; String                                     ;
+; c_cnt_odd_div_duty_en14              ; false                  ; String                                     ;
+; c_cnt_prst14                         ; 1                      ; Signed Integer                             ;
+; c_cnt_ph_mux_prst14                  ; 0                      ; Signed Integer                             ;
+; c_cnt_hi_div15                       ; 1                      ; Signed Integer                             ;
+; c_cnt_lo_div15                       ; 1                      ; Signed Integer                             ;
+; c_cnt_bypass_en15                    ; false                  ; String                                     ;
+; c_cnt_in_src15                       ; ph_mux_clk             ; String                                     ;
+; c_cnt_odd_div_duty_en15              ; false                  ; String                                     ;
+; c_cnt_prst15                         ; 1                      ; Signed Integer                             ;
+; c_cnt_ph_mux_prst15                  ; 0                      ; Signed Integer                             ;
+; c_cnt_hi_div16                       ; 1                      ; Signed Integer                             ;
+; c_cnt_lo_div16                       ; 1                      ; Signed Integer                             ;
+; c_cnt_bypass_en16                    ; false                  ; String                                     ;
+; c_cnt_in_src16                       ; ph_mux_clk             ; String                                     ;
+; c_cnt_odd_div_duty_en16              ; false                  ; String                                     ;
+; c_cnt_prst16                         ; 1                      ; Signed Integer                             ;
+; c_cnt_ph_mux_prst16                  ; 0                      ; Signed Integer                             ;
+; c_cnt_hi_div17                       ; 1                      ; Signed Integer                             ;
+; c_cnt_lo_div17                       ; 1                      ; Signed Integer                             ;
+; c_cnt_bypass_en17                    ; false                  ; String                                     ;
+; c_cnt_in_src17                       ; ph_mux_clk             ; String                                     ;
+; c_cnt_odd_div_duty_en17              ; false                  ; String                                     ;
+; c_cnt_prst17                         ; 1                      ; Signed Integer                             ;
+; c_cnt_ph_mux_prst17                  ; 0                      ; Signed Integer                             ;
+; pll_vco_div                          ; 1                      ; Signed Integer                             ;
+; pll_slf_rst                          ; false                  ; String                                     ;
+; pll_bw_sel                           ; low                    ; String                                     ;
+; pll_output_clk_frequency             ; 0 MHz                  ; String                                     ;
+; pll_cp_current                       ; 0                      ; Signed Integer                             ;
+; pll_bwctrl                           ; 0                      ; Signed Integer                             ;
+; pll_fractional_division              ; 1                      ; Signed Integer                             ;
+; pll_fractional_cout                  ; 24                     ; Signed Integer                             ;
+; pll_dsm_out_sel                      ; 1st_order              ; String                                     ;
+; mimic_fbclk_type                     ; gclk                   ; String                                     ;
+; pll_fbclk_mux_1                      ; glb                    ; String                                     ;
+; pll_fbclk_mux_2                      ; fb_1                   ; String                                     ;
+; pll_m_cnt_in_src                     ; ph_mux_clk             ; String                                     ;
+; pll_vcoph_div                        ; 1                      ; Signed Integer                             ;
+; refclk1_frequency                    ; 0 MHz                  ; String                                     ;
+; pll_clkin_0_src                      ; clk_0                  ; String                                     ;
+; pll_clkin_1_src                      ; clk_0                  ; String                                     ;
+; pll_clk_loss_sw_en                   ; false                  ; String                                     ;
+; pll_auto_clk_sw_en                   ; false                  ; String                                     ;
+; pll_manu_clk_sw_en                   ; false                  ; String                                     ;
+; pll_clk_sw_dly                       ; 0                      ; Signed Integer                             ;
+; pll_extclk_0_cnt_src                 ; pll_extclk_cnt_src_vss ; String                                     ;
+; pll_extclk_1_cnt_src                 ; pll_extclk_cnt_src_vss ; String                                     ;
++--------------------------------------+------------------------+--------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: i2c_av_config:setting_audio_chip ;
++----------------+-------+------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                 ;
++----------------+-------+------------------------------------------------------+
+; LAST_INDEX     ; 1010  ; Unsigned Binary                                      ;
++----------------+-------+------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: i2c_av_config:setting_audio_chip|i2c_controller:control ;
++----------------+-------+-----------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                        ;
++----------------+-------+-----------------------------------------------------------------------------+
+; LAST_STAGE     ; 11101 ; Unsigned Binary                                                             ;
++----------------+-------+-----------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: wavegen_codec:wave_out|wave_gen_16b:wg|sine_lut_16b:rom_sine ;
++----------------+-------+----------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                             ;
++----------------+-------+----------------------------------------------------------------------------------+
+; DATA_WIDTH     ; 16    ; Signed Integer                                                                   ;
+; ADDR_WIDTH     ; 10    ; Signed Integer                                                                   ;
++----------------+-------+----------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: wavegen_codec:wave_out|wave_gen_16b:wg|triangle_lut_16b:rom_triangle ;
++----------------+-------+------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                     ;
++----------------+-------+------------------------------------------------------------------------------------------+
+; DATA_WIDTH     ; 16    ; Signed Integer                                                                           ;
+; ADDR_WIDTH     ; 10    ; Signed Integer                                                                           ;
++----------------+-------+------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: wavegen_codec:wave_out|wave_gen_16b:wg|sawtooth_lut_16b:rom_sawtooth ;
++----------------+-------+------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                     ;
++----------------+-------+------------------------------------------------------------------------------------------+
+; DATA_WIDTH     ; 16    ; Signed Integer                                                                           ;
+; ADDR_WIDTH     ; 10    ; Signed Integer                                                                           ;
++----------------+-------+------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: wavegen_codec:wave_out|wave_gen_16b:wg|ecg_lut_16b:rom_ecg ;
++----------------+-------+--------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                           ;
++----------------+-------+--------------------------------------------------------------------------------+
+; DATA_WIDTH     ; 16    ; Signed Integer                                                                 ;
+; ADDR_WIDTH     ; 10    ; Signed Integer                                                                 ;
++----------------+-------+--------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: wavegen_codec:wave_out|wave_gen_16b:wg|lfsr:noise_gen ;
++----------------+----------------------------------+------------------------------------------------+
+; Parameter Name ; Value                            ; Type                                           ;
++----------------+----------------------------------+------------------------------------------------+
+; SEED           ; 10101100111000010010001101000101 ; Unsigned Binary                                ;
++----------------+----------------------------------+------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: wavegen_codec:wave_out|wave_gen_16b:wg|ecg_lut_16b:rom_ecg|altsyncram:rom_rtl_0 ;
++------------------------------------+------------------------------------------------+--------------------------------------------+
+; Parameter Name                     ; Value                                          ; Type                                       ;
++------------------------------------+------------------------------------------------+--------------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                                              ; Untyped                                    ;
+; AUTO_CARRY_CHAINS                  ; ON                                             ; AUTO_CARRY                                 ;
+; IGNORE_CARRY_BUFFERS               ; OFF                                            ; IGNORE_CARRY                               ;
+; AUTO_CASCADE_CHAINS                ; ON                                             ; AUTO_CASCADE                               ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                                            ; IGNORE_CASCADE                             ;
+; WIDTH_BYTEENA                      ; 1                                              ; Untyped                                    ;
+; OPERATION_MODE                     ; ROM                                            ; Untyped                                    ;
+; WIDTH_A                            ; 16                                             ; Untyped                                    ;
+; WIDTHAD_A                          ; 10                                             ; Untyped                                    ;
+; NUMWORDS_A                         ; 1024                                           ; Untyped                                    ;
+; OUTDATA_REG_A                      ; UNREGISTERED                                   ; Untyped                                    ;
+; ADDRESS_ACLR_A                     ; NONE                                           ; Untyped                                    ;
+; OUTDATA_ACLR_A                     ; NONE                                           ; Untyped                                    ;
+; WRCONTROL_ACLR_A                   ; NONE                                           ; Untyped                                    ;
+; INDATA_ACLR_A                      ; NONE                                           ; Untyped                                    ;
+; BYTEENA_ACLR_A                     ; NONE                                           ; Untyped                                    ;
+; WIDTH_B                            ; 1                                              ; Untyped                                    ;
+; WIDTHAD_B                          ; 1                                              ; Untyped                                    ;
+; NUMWORDS_B                         ; 1                                              ; Untyped                                    ;
+; INDATA_REG_B                       ; CLOCK1                                         ; Untyped                                    ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1                                         ; Untyped                                    ;
+; RDCONTROL_REG_B                    ; CLOCK1                                         ; Untyped                                    ;
+; ADDRESS_REG_B                      ; CLOCK1                                         ; Untyped                                    ;
+; OUTDATA_REG_B                      ; UNREGISTERED                                   ; Untyped                                    ;
+; BYTEENA_REG_B                      ; CLOCK1                                         ; Untyped                                    ;
+; INDATA_ACLR_B                      ; NONE                                           ; Untyped                                    ;
+; WRCONTROL_ACLR_B                   ; NONE                                           ; Untyped                                    ;
+; ADDRESS_ACLR_B                     ; NONE                                           ; Untyped                                    ;
+; OUTDATA_ACLR_B                     ; NONE                                           ; Untyped                                    ;
+; RDCONTROL_ACLR_B                   ; NONE                                           ; Untyped                                    ;
+; BYTEENA_ACLR_B                     ; NONE                                           ; Untyped                                    ;
+; WIDTH_BYTEENA_A                    ; 1                                              ; Untyped                                    ;
+; WIDTH_BYTEENA_B                    ; 1                                              ; Untyped                                    ;
+; RAM_BLOCK_TYPE                     ; AUTO                                           ; Untyped                                    ;
+; BYTE_SIZE                          ; 8                                              ; Untyped                                    ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                      ; Untyped                                    ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ                           ; Untyped                                    ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ                           ; Untyped                                    ;
+; INIT_FILE                          ; db/lab1_demo.ram0_ecg_lut_16b_93421404.hdl.mif ; Untyped                                    ;
+; INIT_FILE_LAYOUT                   ; PORT_A                                         ; Untyped                                    ;
+; MAXIMUM_DEPTH                      ; 0                                              ; Untyped                                    ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL                                         ; Untyped                                    ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL                                         ; Untyped                                    ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL                                         ; Untyped                                    ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL                                         ; Untyped                                    ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN                                ; Untyped                                    ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN                                ; Untyped                                    ;
+; ENABLE_ECC                         ; FALSE                                          ; Untyped                                    ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                                          ; Untyped                                    ;
+; WIDTH_ECCSTATUS                    ; 3                                              ; Untyped                                    ;
+; DEVICE_FAMILY                      ; Cyclone V                                      ; Untyped                                    ;
+; CBXI_PARAMETER                     ; altsyncram_2hd1                                ; Untyped                                    ;
++------------------------------------+------------------------------------------------+--------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: wavegen_codec:wave_out|wave_gen_16b:wg|sawtooth_lut_16b:rom_sawtooth|altsyncram:rom_rtl_0 ;
++------------------------------------+-----------------------------------------------------+-------------------------------------------------+
+; Parameter Name                     ; Value                                               ; Type                                            ;
++------------------------------------+-----------------------------------------------------+-------------------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                                                   ; Untyped                                         ;
+; AUTO_CARRY_CHAINS                  ; ON                                                  ; AUTO_CARRY                                      ;
+; IGNORE_CARRY_BUFFERS               ; OFF                                                 ; IGNORE_CARRY                                    ;
+; AUTO_CASCADE_CHAINS                ; ON                                                  ; AUTO_CASCADE                                    ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                                                 ; IGNORE_CASCADE                                  ;
+; WIDTH_BYTEENA                      ; 1                                                   ; Untyped                                         ;
+; OPERATION_MODE                     ; ROM                                                 ; Untyped                                         ;
+; WIDTH_A                            ; 16                                                  ; Untyped                                         ;
+; WIDTHAD_A                          ; 10                                                  ; Untyped                                         ;
+; NUMWORDS_A                         ; 1024                                                ; Untyped                                         ;
+; OUTDATA_REG_A                      ; UNREGISTERED                                        ; Untyped                                         ;
+; ADDRESS_ACLR_A                     ; NONE                                                ; Untyped                                         ;
+; OUTDATA_ACLR_A                     ; NONE                                                ; Untyped                                         ;
+; WRCONTROL_ACLR_A                   ; NONE                                                ; Untyped                                         ;
+; INDATA_ACLR_A                      ; NONE                                                ; Untyped                                         ;
+; BYTEENA_ACLR_A                     ; NONE                                                ; Untyped                                         ;
+; WIDTH_B                            ; 1                                                   ; Untyped                                         ;
+; WIDTHAD_B                          ; 1                                                   ; Untyped                                         ;
+; NUMWORDS_B                         ; 1                                                   ; Untyped                                         ;
+; INDATA_REG_B                       ; CLOCK1                                              ; Untyped                                         ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1                                              ; Untyped                                         ;
+; RDCONTROL_REG_B                    ; CLOCK1                                              ; Untyped                                         ;
+; ADDRESS_REG_B                      ; CLOCK1                                              ; Untyped                                         ;
+; OUTDATA_REG_B                      ; UNREGISTERED                                        ; Untyped                                         ;
+; BYTEENA_REG_B                      ; CLOCK1                                              ; Untyped                                         ;
+; INDATA_ACLR_B                      ; NONE                                                ; Untyped                                         ;
+; WRCONTROL_ACLR_B                   ; NONE                                                ; Untyped                                         ;
+; ADDRESS_ACLR_B                     ; NONE                                                ; Untyped                                         ;
+; OUTDATA_ACLR_B                     ; NONE                                                ; Untyped                                         ;
+; RDCONTROL_ACLR_B                   ; NONE                                                ; Untyped                                         ;
+; BYTEENA_ACLR_B                     ; NONE                                                ; Untyped                                         ;
+; WIDTH_BYTEENA_A                    ; 1                                                   ; Untyped                                         ;
+; WIDTH_BYTEENA_B                    ; 1                                                   ; Untyped                                         ;
+; RAM_BLOCK_TYPE                     ; AUTO                                                ; Untyped                                         ;
+; BYTE_SIZE                          ; 8                                                   ; Untyped                                         ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                           ; Untyped                                         ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ                                ; Untyped                                         ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ                                ; Untyped                                         ;
+; INIT_FILE                          ; db/lab1_demo.ram0_sawtooth_lut_16b_17db4b39.hdl.mif ; Untyped                                         ;
+; INIT_FILE_LAYOUT                   ; PORT_A                                              ; Untyped                                         ;
+; MAXIMUM_DEPTH                      ; 0                                                   ; Untyped                                         ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL                                              ; Untyped                                         ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL                                              ; Untyped                                         ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL                                              ; Untyped                                         ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL                                              ; Untyped                                         ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN                                     ; Untyped                                         ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN                                     ; Untyped                                         ;
+; ENABLE_ECC                         ; FALSE                                               ; Untyped                                         ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                                               ; Untyped                                         ;
+; WIDTH_ECCSTATUS                    ; 3                                                   ; Untyped                                         ;
+; DEVICE_FAMILY                      ; Cyclone V                                           ; Untyped                                         ;
+; CBXI_PARAMETER                     ; altsyncram_18e1                                     ; Untyped                                         ;
++------------------------------------+-----------------------------------------------------+-------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: wavegen_codec:wave_out|wave_gen_16b:wg|triangle_lut_16b:rom_triangle|altsyncram:rom_rtl_0 ;
++------------------------------------+-----------------------------------------------------+-------------------------------------------------+
+; Parameter Name                     ; Value                                               ; Type                                            ;
++------------------------------------+-----------------------------------------------------+-------------------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                                                   ; Untyped                                         ;
+; AUTO_CARRY_CHAINS                  ; ON                                                  ; AUTO_CARRY                                      ;
+; IGNORE_CARRY_BUFFERS               ; OFF                                                 ; IGNORE_CARRY                                    ;
+; AUTO_CASCADE_CHAINS                ; ON                                                  ; AUTO_CASCADE                                    ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                                                 ; IGNORE_CASCADE                                  ;
+; WIDTH_BYTEENA                      ; 1                                                   ; Untyped                                         ;
+; OPERATION_MODE                     ; ROM                                                 ; Untyped                                         ;
+; WIDTH_A                            ; 16                                                  ; Untyped                                         ;
+; WIDTHAD_A                          ; 10                                                  ; Untyped                                         ;
+; NUMWORDS_A                         ; 1024                                                ; Untyped                                         ;
+; OUTDATA_REG_A                      ; UNREGISTERED                                        ; Untyped                                         ;
+; ADDRESS_ACLR_A                     ; NONE                                                ; Untyped                                         ;
+; OUTDATA_ACLR_A                     ; NONE                                                ; Untyped                                         ;
+; WRCONTROL_ACLR_A                   ; NONE                                                ; Untyped                                         ;
+; INDATA_ACLR_A                      ; NONE                                                ; Untyped                                         ;
+; BYTEENA_ACLR_A                     ; NONE                                                ; Untyped                                         ;
+; WIDTH_B                            ; 1                                                   ; Untyped                                         ;
+; WIDTHAD_B                          ; 1                                                   ; Untyped                                         ;
+; NUMWORDS_B                         ; 1                                                   ; Untyped                                         ;
+; INDATA_REG_B                       ; CLOCK1                                              ; Untyped                                         ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1                                              ; Untyped                                         ;
+; RDCONTROL_REG_B                    ; CLOCK1                                              ; Untyped                                         ;
+; ADDRESS_REG_B                      ; CLOCK1                                              ; Untyped                                         ;
+; OUTDATA_REG_B                      ; UNREGISTERED                                        ; Untyped                                         ;
+; BYTEENA_REG_B                      ; CLOCK1                                              ; Untyped                                         ;
+; INDATA_ACLR_B                      ; NONE                                                ; Untyped                                         ;
+; WRCONTROL_ACLR_B                   ; NONE                                                ; Untyped                                         ;
+; ADDRESS_ACLR_B                     ; NONE                                                ; Untyped                                         ;
+; OUTDATA_ACLR_B                     ; NONE                                                ; Untyped                                         ;
+; RDCONTROL_ACLR_B                   ; NONE                                                ; Untyped                                         ;
+; BYTEENA_ACLR_B                     ; NONE                                                ; Untyped                                         ;
+; WIDTH_BYTEENA_A                    ; 1                                                   ; Untyped                                         ;
+; WIDTH_BYTEENA_B                    ; 1                                                   ; Untyped                                         ;
+; RAM_BLOCK_TYPE                     ; AUTO                                                ; Untyped                                         ;
+; BYTE_SIZE                          ; 8                                                   ; Untyped                                         ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                           ; Untyped                                         ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ                                ; Untyped                                         ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ                                ; Untyped                                         ;
+; INIT_FILE                          ; db/lab1_demo.ram0_triangle_lut_16b_a89b6f06.hdl.mif ; Untyped                                         ;
+; INIT_FILE_LAYOUT                   ; PORT_A                                              ; Untyped                                         ;
+; MAXIMUM_DEPTH                      ; 0                                                   ; Untyped                                         ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL                                              ; Untyped                                         ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL                                              ; Untyped                                         ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL                                              ; Untyped                                         ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL                                              ; Untyped                                         ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN                                     ; Untyped                                         ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN                                     ; Untyped                                         ;
+; ENABLE_ECC                         ; FALSE                                               ; Untyped                                         ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                                               ; Untyped                                         ;
+; WIDTH_ECCSTATUS                    ; 3                                                   ; Untyped                                         ;
+; DEVICE_FAMILY                      ; Cyclone V                                           ; Untyped                                         ;
+; CBXI_PARAMETER                     ; altsyncram_47e1                                     ; Untyped                                         ;
++------------------------------------+-----------------------------------------------------+-------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: wavegen_codec:wave_out|wave_gen_16b:wg|sine_lut_16b:rom_sine|altsyncram:rom_rtl_0 ;
++------------------------------------+-------------------------------------------------+---------------------------------------------+
+; Parameter Name                     ; Value                                           ; Type                                        ;
++------------------------------------+-------------------------------------------------+---------------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                                               ; Untyped                                     ;
+; AUTO_CARRY_CHAINS                  ; ON                                              ; AUTO_CARRY                                  ;
+; IGNORE_CARRY_BUFFERS               ; OFF                                             ; IGNORE_CARRY                                ;
+; AUTO_CASCADE_CHAINS                ; ON                                              ; AUTO_CASCADE                                ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                                             ; IGNORE_CASCADE                              ;
+; WIDTH_BYTEENA                      ; 1                                               ; Untyped                                     ;
+; OPERATION_MODE                     ; ROM                                             ; Untyped                                     ;
+; WIDTH_A                            ; 16                                              ; Untyped                                     ;
+; WIDTHAD_A                          ; 10                                              ; Untyped                                     ;
+; NUMWORDS_A                         ; 1024                                            ; Untyped                                     ;
+; OUTDATA_REG_A                      ; UNREGISTERED                                    ; Untyped                                     ;
+; ADDRESS_ACLR_A                     ; NONE                                            ; Untyped                                     ;
+; OUTDATA_ACLR_A                     ; NONE                                            ; Untyped                                     ;
+; WRCONTROL_ACLR_A                   ; NONE                                            ; Untyped                                     ;
+; INDATA_ACLR_A                      ; NONE                                            ; Untyped                                     ;
+; BYTEENA_ACLR_A                     ; NONE                                            ; Untyped                                     ;
+; WIDTH_B                            ; 1                                               ; Untyped                                     ;
+; WIDTHAD_B                          ; 1                                               ; Untyped                                     ;
+; NUMWORDS_B                         ; 1                                               ; Untyped                                     ;
+; INDATA_REG_B                       ; CLOCK1                                          ; Untyped                                     ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1                                          ; Untyped                                     ;
+; RDCONTROL_REG_B                    ; CLOCK1                                          ; Untyped                                     ;
+; ADDRESS_REG_B                      ; CLOCK1                                          ; Untyped                                     ;
+; OUTDATA_REG_B                      ; UNREGISTERED                                    ; Untyped                                     ;
+; BYTEENA_REG_B                      ; CLOCK1                                          ; Untyped                                     ;
+; INDATA_ACLR_B                      ; NONE                                            ; Untyped                                     ;
+; WRCONTROL_ACLR_B                   ; NONE                                            ; Untyped                                     ;
+; ADDRESS_ACLR_B                     ; NONE                                            ; Untyped                                     ;
+; OUTDATA_ACLR_B                     ; NONE                                            ; Untyped                                     ;
+; RDCONTROL_ACLR_B                   ; NONE                                            ; Untyped                                     ;
+; BYTEENA_ACLR_B                     ; NONE                                            ; Untyped                                     ;
+; WIDTH_BYTEENA_A                    ; 1                                               ; Untyped                                     ;
+; WIDTH_BYTEENA_B                    ; 1                                               ; Untyped                                     ;
+; RAM_BLOCK_TYPE                     ; AUTO                                            ; Untyped                                     ;
+; BYTE_SIZE                          ; 8                                               ; Untyped                                     ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                       ; Untyped                                     ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ                            ; Untyped                                     ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ                            ; Untyped                                     ;
+; INIT_FILE                          ; db/lab1_demo.ram0_sine_lut_16b_d9458eff.hdl.mif ; Untyped                                     ;
+; INIT_FILE_LAYOUT                   ; PORT_A                                          ; Untyped                                     ;
+; MAXIMUM_DEPTH                      ; 0                                               ; Untyped                                     ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL                                          ; Untyped                                     ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL                                          ; Untyped                                     ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL                                          ; Untyped                                     ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL                                          ; Untyped                                     ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN                                 ; Untyped                                     ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN                                 ; Untyped                                     ;
+; ENABLE_ECC                         ; FALSE                                           ; Untyped                                     ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                                           ; Untyped                                     ;
+; WIDTH_ECCSTATUS                    ; 3                                               ; Untyped                                     ;
+; DEVICE_FAMILY                      ; Cyclone V                                       ; Untyped                                     ;
+; CBXI_PARAMETER                     ; altsyncram_mrd1                                 ; Untyped                                     ;
++------------------------------------+-------------------------------------------------+---------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------------------------------------+
+; altsyncram Parameter Settings by Entity Instance                                                                                      ;
++-------------------------------------------+-------------------------------------------------------------------------------------------+
+; Name                                      ; Value                                                                                     ;
++-------------------------------------------+-------------------------------------------------------------------------------------------+
+; Number of entity instances                ; 4                                                                                         ;
+; Entity Instance                           ; wavegen_codec:wave_out|wave_gen_16b:wg|ecg_lut_16b:rom_ecg|altsyncram:rom_rtl_0           ;
+;     -- OPERATION_MODE                     ; ROM                                                                                       ;
+;     -- WIDTH_A                            ; 16                                                                                        ;
+;     -- NUMWORDS_A                         ; 1024                                                                                      ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                                              ;
+;     -- WIDTH_B                            ; 1                                                                                         ;
+;     -- NUMWORDS_B                         ; 1                                                                                         ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                                                                                    ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                                              ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                                                                      ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                                                 ;
+; Entity Instance                           ; wavegen_codec:wave_out|wave_gen_16b:wg|sawtooth_lut_16b:rom_sawtooth|altsyncram:rom_rtl_0 ;
+;     -- OPERATION_MODE                     ; ROM                                                                                       ;
+;     -- WIDTH_A                            ; 16                                                                                        ;
+;     -- NUMWORDS_A                         ; 1024                                                                                      ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                                              ;
+;     -- WIDTH_B                            ; 1                                                                                         ;
+;     -- NUMWORDS_B                         ; 1                                                                                         ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                                                                                    ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                                              ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                                                                      ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                                                 ;
+; Entity Instance                           ; wavegen_codec:wave_out|wave_gen_16b:wg|triangle_lut_16b:rom_triangle|altsyncram:rom_rtl_0 ;
+;     -- OPERATION_MODE                     ; ROM                                                                                       ;
+;     -- WIDTH_A                            ; 16                                                                                        ;
+;     -- NUMWORDS_A                         ; 1024                                                                                      ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                                              ;
+;     -- WIDTH_B                            ; 1                                                                                         ;
+;     -- NUMWORDS_B                         ; 1                                                                                         ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                                                                                    ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                                              ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                                                                      ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                                                 ;
+; Entity Instance                           ; wavegen_codec:wave_out|wave_gen_16b:wg|sine_lut_16b:rom_sine|altsyncram:rom_rtl_0         ;
+;     -- OPERATION_MODE                     ; ROM                                                                                       ;
+;     -- WIDTH_A                            ; 16                                                                                        ;
+;     -- NUMWORDS_A                         ; 1024                                                                                      ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                                              ;
+;     -- WIDTH_B                            ; 1                                                                                         ;
+;     -- NUMWORDS_B                         ; 1                                                                                         ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                                                                                    ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                                              ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                                                                      ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                                                 ;
++-------------------------------------------+-------------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "wavegen_codec:wave_out|wave_gen_16b:wg|lfsr:noise_gen"                                          ;
++------------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port             ; Type   ; Severity ; Details                                                                             ;
++------------------+--------+----------+-------------------------------------------------------------------------------------+
+; lfsr_out[31..12] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "wavegen_codec:wave_out|wave_gen_16b:wg|ecg_lut_16b:rom_ecg"                         ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; q[0] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "wavegen_codec:wave_out|wave_gen_16b:wg|sawtooth_lut_16b:rom_sawtooth"               ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; q[0] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "wavegen_codec:wave_out|wave_gen_16b:wg|triangle_lut_16b:rom_triangle"               ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; q[0] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "wavegen_codec:wave_out|wave_gen_16b:wg|sine_lut_16b:rom_sine"                       ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; q[0] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "wavegen_codec:wave_out|audio_codec:ac"                                                        ;
++----------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port           ; Type   ; Severity ; Details                                                                             ;
++----------------+--------+----------+-------------------------------------------------------------------------------------+
+; sample_end     ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; sample_req[0]  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; audio_input    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; channel_sel[1] ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; channel_sel[0] ; Input  ; Info     ; Stuck at GND                                                                        ;
++----------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "wavegen_codec:wave_out"                                                                                        ;
++------------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; Port       ; Type   ; Severity ; Details                                                                                                  ;
++------------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; wave_value ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
++------------+--------+----------+----------------------------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; arriav_ff             ; 1469                        ;
+;     ENA               ; 34                          ;
+;     ENA CLR           ; 32                          ;
+;     ENA SCLR          ; 1194                        ;
+;     ENA SCLR SLD      ; 15                          ;
+;     ENA SLD           ; 3                           ;
+;     SCLR              ; 88                          ;
+;     SCLR SLD          ; 71                          ;
+;     SLD               ; 24                          ;
+;     plain             ; 8                           ;
+; arriav_io_obuf        ; 4                           ;
+; arriav_lcell_comb     ; 446                         ;
+;     arith             ; 122                         ;
+;         0 data inputs ; 1                           ;
+;         1 data inputs ; 33                          ;
+;         2 data inputs ; 88                          ;
+;     extend            ; 3                           ;
+;         7 data inputs ; 3                           ;
+;     normal            ; 199                         ;
+;         0 data inputs ; 1                           ;
+;         1 data inputs ; 18                          ;
+;         2 data inputs ; 12                          ;
+;         3 data inputs ; 93                          ;
+;         4 data inputs ; 19                          ;
+;         5 data inputs ; 10                          ;
+;         6 data inputs ; 46                          ;
+;     shared            ; 122                         ;
+;         1 data inputs ; 9                           ;
+;         2 data inputs ; 1                           ;
+;         3 data inputs ; 112                         ;
+; arriav_mac            ; 19                          ;
+; boundary_port         ; 78                          ;
+; generic_pll           ; 1                           ;
+; stratixv_ram_block    ; 60                          ;
+;                       ;                             ;
+; Max LUT depth         ; 5.70                        ;
+; Average LUT depth     ; 1.40                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:01     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition
+    Info: Processing started: Tue Nov 25 13:25:11 2025
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off lab1_demo -c lab1_demo
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file ecg_lut_16b.v
+    Info (12023): Found entity 1: ecg_lut_16b File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/ecg_lut_16b.v Line: 4
+Info (12021): Found 1 design units, including 1 entities, in source file sine_lut_16b.v
+    Info (12023): Found entity 1: sine_lut_16b File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/sine_lut_16b.v Line: 4
+Info (12021): Found 1 design units, including 1 entities, in source file triangle_lut_16b.v
+    Info (12023): Found entity 1: triangle_lut_16b File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/triangle_lut_16b.v Line: 4
+Info (12021): Found 1 design units, including 1 entities, in source file sawtooth_lut_16b.v
+    Info (12023): Found entity 1: sawtooth_lut_16b File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/sawtooth_lut_16b.v Line: 4
+Info (12021): Found 1 design units, including 1 entities, in source file wave_gen_16b.sv
+    Info (12023): Found entity 1: wave_gen_16b File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/wave_gen_16b.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file fir.sv
+    Info (12023): Found entity 1: filter File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/fir.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file wavegen_codec.sv
+    Info (12023): Found entity 1: wavegen_codec File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/wavegen_codec.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file wave_gen.sv
+    Info (12023): Found entity 1: wave_gen File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/wave_gen.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file triangle_lut.v
+    Info (12023): Found entity 1: triangle_lut File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/triangle_lut.v Line: 4
+Info (12021): Found 1 design units, including 1 entities, in source file sine_lut.v
+    Info (12023): Found entity 1: sine_lut File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/sine_lut.v Line: 4
+Info (12021): Found 1 design units, including 1 entities, in source file sawtooth_lut.v
+    Info (12023): Found entity 1: sawtooth_lut File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/sawtooth_lut.v Line: 4
+Info (12021): Found 1 design units, including 1 entities, in source file lfsr.v
+    Info (12023): Found entity 1: lfsr File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lfsr.v Line: 30
+Info (12021): Found 1 design units, including 1 entities, in source file lab1_demo.v
+    Info (12023): Found entity 1: lab1_demo File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 6
+Info (12021): Found 1 design units, including 1 entities, in source file i2c_controller.v
+    Info (12023): Found entity 1: i2c_controller File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/i2c_controller.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file i2c_av_config.v
+    Info (12023): Found entity 1: i2c_av_config File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/i2c_av_config.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file ecg_lut.v
+    Info (12023): Found entity 1: ecg_lut File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/ecg_lut.v Line: 4
+Info (12021): Found 1 design units, including 1 entities, in source file audio_codec.v
+    Info (12023): Found entity 1: audio_codec File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/audio_codec.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file pll_clk.v
+    Info (12023): Found entity 1: pll_clk File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/pll_clk.v Line: 8
+Info (12021): Found 1 design units, including 1 entities, in source file pll_clk/pll_clk_0002.v
+    Info (12023): Found entity 1: pll_clk_0002 File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/pll_clk/pll_clk_0002.v Line: 2
+Info (12127): Elaborating entity "lab1_demo" for the top level hierarchy
+Warning (10034): Output port "HEX0" at lab1_demo.v(24) has no driver File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 24
+Warning (10034): Output port "HEX1" at lab1_demo.v(25) has no driver File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 25
+Warning (10034): Output port "HEX2" at lab1_demo.v(26) has no driver File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 26
+Warning (10034): Output port "HEX3" at lab1_demo.v(27) has no driver File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 27
+Warning (10034): Output port "HEX4" at lab1_demo.v(28) has no driver File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 28
+Warning (10034): Output port "HEX5" at lab1_demo.v(29) has no driver File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 29
+Info (12128): Elaborating entity "pll_clk" for hierarchy "pll_clk:pll" File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 57
+Info (12128): Elaborating entity "pll_clk_0002" for hierarchy "pll_clk:pll|pll_clk_0002:pll_clk_inst" File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/pll_clk.v Line: 19
+Info (12128): Elaborating entity "altera_pll" for hierarchy "pll_clk:pll|pll_clk_0002:pll_clk_inst|altera_pll:altera_pll_i" File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/pll_clk/pll_clk_0002.v Line: 85
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "wire_to_nowhere_64" into its bus
+Info (12130): Elaborated megafunction instantiation "pll_clk:pll|pll_clk_0002:pll_clk_inst|altera_pll:altera_pll_i" File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/pll_clk/pll_clk_0002.v Line: 85
+Info (12133): Instantiated megafunction "pll_clk:pll|pll_clk_0002:pll_clk_inst|altera_pll:altera_pll_i" with the following parameter: File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/pll_clk/pll_clk_0002.v Line: 85
+    Info (12134): Parameter "fractional_vco_multiplier" = "false"
+    Info (12134): Parameter "reference_clock_frequency" = "50.0 MHz"
+    Info (12134): Parameter "operation_mode" = "direct"
+    Info (12134): Parameter "number_of_clocks" = "1"
+    Info (12134): Parameter "output_clock_frequency0" = "12.000000 MHz"
+    Info (12134): Parameter "phase_shift0" = "0 ps"
+    Info (12134): Parameter "duty_cycle0" = "50"
+    Info (12134): Parameter "output_clock_frequency1" = "0 MHz"
+    Info (12134): Parameter "phase_shift1" = "0 ps"
+    Info (12134): Parameter "duty_cycle1" = "50"
+    Info (12134): Parameter "output_clock_frequency2" = "0 MHz"
+    Info (12134): Parameter "phase_shift2" = "0 ps"
+    Info (12134): Parameter "duty_cycle2" = "50"
+    Info (12134): Parameter "output_clock_frequency3" = "0 MHz"
+    Info (12134): Parameter "phase_shift3" = "0 ps"
+    Info (12134): Parameter "duty_cycle3" = "50"
+    Info (12134): Parameter "output_clock_frequency4" = "0 MHz"
+    Info (12134): Parameter "phase_shift4" = "0 ps"
+    Info (12134): Parameter "duty_cycle4" = "50"
+    Info (12134): Parameter "output_clock_frequency5" = "0 MHz"
+    Info (12134): Parameter "phase_shift5" = "0 ps"
+    Info (12134): Parameter "duty_cycle5" = "50"
+    Info (12134): Parameter "output_clock_frequency6" = "0 MHz"
+    Info (12134): Parameter "phase_shift6" = "0 ps"
+    Info (12134): Parameter "duty_cycle6" = "50"
+    Info (12134): Parameter "output_clock_frequency7" = "0 MHz"
+    Info (12134): Parameter "phase_shift7" = "0 ps"
+    Info (12134): Parameter "duty_cycle7" = "50"
+    Info (12134): Parameter "output_clock_frequency8" = "0 MHz"
+    Info (12134): Parameter "phase_shift8" = "0 ps"
+    Info (12134): Parameter "duty_cycle8" = "50"
+    Info (12134): Parameter "output_clock_frequency9" = "0 MHz"
+    Info (12134): Parameter "phase_shift9" = "0 ps"
+    Info (12134): Parameter "duty_cycle9" = "50"
+    Info (12134): Parameter "output_clock_frequency10" = "0 MHz"
+    Info (12134): Parameter "phase_shift10" = "0 ps"
+    Info (12134): Parameter "duty_cycle10" = "50"
+    Info (12134): Parameter "output_clock_frequency11" = "0 MHz"
+    Info (12134): Parameter "phase_shift11" = "0 ps"
+    Info (12134): Parameter "duty_cycle11" = "50"
+    Info (12134): Parameter "output_clock_frequency12" = "0 MHz"
+    Info (12134): Parameter "phase_shift12" = "0 ps"
+    Info (12134): Parameter "duty_cycle12" = "50"
+    Info (12134): Parameter "output_clock_frequency13" = "0 MHz"
+    Info (12134): Parameter "phase_shift13" = "0 ps"
+    Info (12134): Parameter "duty_cycle13" = "50"
+    Info (12134): Parameter "output_clock_frequency14" = "0 MHz"
+    Info (12134): Parameter "phase_shift14" = "0 ps"
+    Info (12134): Parameter "duty_cycle14" = "50"
+    Info (12134): Parameter "output_clock_frequency15" = "0 MHz"
+    Info (12134): Parameter "phase_shift15" = "0 ps"
+    Info (12134): Parameter "duty_cycle15" = "50"
+    Info (12134): Parameter "output_clock_frequency16" = "0 MHz"
+    Info (12134): Parameter "phase_shift16" = "0 ps"
+    Info (12134): Parameter "duty_cycle16" = "50"
+    Info (12134): Parameter "output_clock_frequency17" = "0 MHz"
+    Info (12134): Parameter "phase_shift17" = "0 ps"
+    Info (12134): Parameter "duty_cycle17" = "50"
+    Info (12134): Parameter "pll_type" = "General"
+    Info (12134): Parameter "pll_subtype" = "General"
+Info (12128): Elaborating entity "i2c_av_config" for hierarchy "i2c_av_config:setting_audio_chip" File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 65
+Info (10264): Verilog HDL Case Statement information at i2c_av_config.v(61): all case item expressions in this case statement are onehot File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/i2c_av_config.v Line: 61
+Info (12128): Elaborating entity "i2c_controller" for hierarchy "i2c_av_config:setting_audio_chip|i2c_controller:control" File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/i2c_av_config.v Line: 29
+Info (12128): Elaborating entity "wavegen_codec" for hierarchy "wavegen_codec:wave_out" File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 82
+Warning (10034): Output port "wave_value" at wavegen_codec.sv(6) has no driver File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/wavegen_codec.sv Line: 6
+Info (12128): Elaborating entity "audio_codec" for hierarchy "wavegen_codec:wave_out|audio_codec:ac" File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/wavegen_codec.sv Line: 36
+Info (12128): Elaborating entity "wave_gen_16b" for hierarchy "wavegen_codec:wave_out|wave_gen_16b:wg" File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/wavegen_codec.sv Line: 60
+Warning (10230): Verilog HDL assignment warning at wave_gen_16b.sv(105): truncated value with size 18 to match size of target (16) File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/wave_gen_16b.sv Line: 105
+Info (12128): Elaborating entity "sine_lut_16b" for hierarchy "wavegen_codec:wave_out|wave_gen_16b:wg|sine_lut_16b:rom_sine" File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/wave_gen_16b.sv Line: 113
+Warning (10030): Net "rom.data_a" at sine_lut_16b.v(13) has no driver or initial value, using a default initial value '0' File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/sine_lut_16b.v Line: 13
+Warning (10030): Net "rom.waddr_a" at sine_lut_16b.v(13) has no driver or initial value, using a default initial value '0' File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/sine_lut_16b.v Line: 13
+Warning (10030): Net "rom.we_a" at sine_lut_16b.v(13) has no driver or initial value, using a default initial value '0' File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/sine_lut_16b.v Line: 13
+Info (12128): Elaborating entity "triangle_lut_16b" for hierarchy "wavegen_codec:wave_out|wave_gen_16b:wg|triangle_lut_16b:rom_triangle" File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/wave_gen_16b.sv Line: 119
+Warning (10030): Net "rom.data_a" at triangle_lut_16b.v(13) has no driver or initial value, using a default initial value '0' File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/triangle_lut_16b.v Line: 13
+Warning (10030): Net "rom.waddr_a" at triangle_lut_16b.v(13) has no driver or initial value, using a default initial value '0' File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/triangle_lut_16b.v Line: 13
+Warning (10030): Net "rom.we_a" at triangle_lut_16b.v(13) has no driver or initial value, using a default initial value '0' File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/triangle_lut_16b.v Line: 13
+Info (12128): Elaborating entity "sawtooth_lut_16b" for hierarchy "wavegen_codec:wave_out|wave_gen_16b:wg|sawtooth_lut_16b:rom_sawtooth" File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/wave_gen_16b.sv Line: 125
+Warning (10030): Net "rom.data_a" at sawtooth_lut_16b.v(13) has no driver or initial value, using a default initial value '0' File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/sawtooth_lut_16b.v Line: 13
+Warning (10030): Net "rom.waddr_a" at sawtooth_lut_16b.v(13) has no driver or initial value, using a default initial value '0' File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/sawtooth_lut_16b.v Line: 13
+Warning (10030): Net "rom.we_a" at sawtooth_lut_16b.v(13) has no driver or initial value, using a default initial value '0' File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/sawtooth_lut_16b.v Line: 13
+Info (12128): Elaborating entity "ecg_lut_16b" for hierarchy "wavegen_codec:wave_out|wave_gen_16b:wg|ecg_lut_16b:rom_ecg" File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/wave_gen_16b.sv Line: 131
+Warning (10030): Net "rom.data_a" at ecg_lut_16b.v(13) has no driver or initial value, using a default initial value '0' File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/ecg_lut_16b.v Line: 13
+Warning (10030): Net "rom.waddr_a" at ecg_lut_16b.v(13) has no driver or initial value, using a default initial value '0' File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/ecg_lut_16b.v Line: 13
+Warning (10030): Net "rom.we_a" at ecg_lut_16b.v(13) has no driver or initial value, using a default initial value '0' File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/ecg_lut_16b.v Line: 13
+Info (12128): Elaborating entity "lfsr" for hierarchy "wavegen_codec:wave_out|wave_gen_16b:wg|lfsr:noise_gen" File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/wave_gen_16b.sv Line: 138
+Info (12128): Elaborating entity "filter" for hierarchy "wavegen_codec:wave_out|filter:u_filter" File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/wavegen_codec.sv Line: 68
+Warning (10230): Verilog HDL assignment warning at fir.sv(115): truncated value with size 41 to match size of target (29) File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/fir.sv Line: 115
+Warning (10230): Verilog HDL assignment warning at fir.sv(126): truncated value with size 29 to match size of target (16) File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/fir.sv Line: 126
+Info (19000): Inferred 4 megafunctions from design logic
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "wavegen_codec:wave_out|wave_gen_16b:wg|ecg_lut_16b:rom_ecg|rom_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to ROM
+        Info (286033): Parameter WIDTH_A set to 16
+        Info (286033): Parameter WIDTHAD_A set to 10
+        Info (286033): Parameter NUMWORDS_A set to 1024
+        Info (286033): Parameter OUTDATA_REG_A set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_A set to NONE
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+        Info (286033): Parameter INIT_FILE set to db/lab1_demo.ram0_ecg_lut_16b_93421404.hdl.mif
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "wavegen_codec:wave_out|wave_gen_16b:wg|sawtooth_lut_16b:rom_sawtooth|rom_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to ROM
+        Info (286033): Parameter WIDTH_A set to 16
+        Info (286033): Parameter WIDTHAD_A set to 10
+        Info (286033): Parameter NUMWORDS_A set to 1024
+        Info (286033): Parameter OUTDATA_REG_A set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_A set to NONE
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+        Info (286033): Parameter INIT_FILE set to db/lab1_demo.ram0_sawtooth_lut_16b_17db4b39.hdl.mif
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "wavegen_codec:wave_out|wave_gen_16b:wg|triangle_lut_16b:rom_triangle|rom_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to ROM
+        Info (286033): Parameter WIDTH_A set to 16
+        Info (286033): Parameter WIDTHAD_A set to 10
+        Info (286033): Parameter NUMWORDS_A set to 1024
+        Info (286033): Parameter OUTDATA_REG_A set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_A set to NONE
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+        Info (286033): Parameter INIT_FILE set to db/lab1_demo.ram0_triangle_lut_16b_a89b6f06.hdl.mif
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "wavegen_codec:wave_out|wave_gen_16b:wg|sine_lut_16b:rom_sine|rom_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to ROM
+        Info (286033): Parameter WIDTH_A set to 16
+        Info (286033): Parameter WIDTHAD_A set to 10
+        Info (286033): Parameter NUMWORDS_A set to 1024
+        Info (286033): Parameter OUTDATA_REG_A set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_A set to NONE
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+        Info (286033): Parameter INIT_FILE set to db/lab1_demo.ram0_sine_lut_16b_d9458eff.hdl.mif
+Info (12130): Elaborated megafunction instantiation "wavegen_codec:wave_out|wave_gen_16b:wg|ecg_lut_16b:rom_ecg|altsyncram:rom_rtl_0"
+Info (12133): Instantiated megafunction "wavegen_codec:wave_out|wave_gen_16b:wg|ecg_lut_16b:rom_ecg|altsyncram:rom_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "ROM"
+    Info (12134): Parameter "WIDTH_A" = "16"
+    Info (12134): Parameter "WIDTHAD_A" = "10"
+    Info (12134): Parameter "NUMWORDS_A" = "1024"
+    Info (12134): Parameter "OUTDATA_REG_A" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+    Info (12134): Parameter "INIT_FILE" = "db/lab1_demo.ram0_ecg_lut_16b_93421404.hdl.mif"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_2hd1.tdf
+    Info (12023): Found entity 1: altsyncram_2hd1 File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/db/altsyncram_2hd1.tdf Line: 28
+Info (12130): Elaborated megafunction instantiation "wavegen_codec:wave_out|wave_gen_16b:wg|sawtooth_lut_16b:rom_sawtooth|altsyncram:rom_rtl_0"
+Info (12133): Instantiated megafunction "wavegen_codec:wave_out|wave_gen_16b:wg|sawtooth_lut_16b:rom_sawtooth|altsyncram:rom_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "ROM"
+    Info (12134): Parameter "WIDTH_A" = "16"
+    Info (12134): Parameter "WIDTHAD_A" = "10"
+    Info (12134): Parameter "NUMWORDS_A" = "1024"
+    Info (12134): Parameter "OUTDATA_REG_A" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+    Info (12134): Parameter "INIT_FILE" = "db/lab1_demo.ram0_sawtooth_lut_16b_17db4b39.hdl.mif"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_18e1.tdf
+    Info (12023): Found entity 1: altsyncram_18e1 File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/db/altsyncram_18e1.tdf Line: 28
+Info (12130): Elaborated megafunction instantiation "wavegen_codec:wave_out|wave_gen_16b:wg|triangle_lut_16b:rom_triangle|altsyncram:rom_rtl_0"
+Info (12133): Instantiated megafunction "wavegen_codec:wave_out|wave_gen_16b:wg|triangle_lut_16b:rom_triangle|altsyncram:rom_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "ROM"
+    Info (12134): Parameter "WIDTH_A" = "16"
+    Info (12134): Parameter "WIDTHAD_A" = "10"
+    Info (12134): Parameter "NUMWORDS_A" = "1024"
+    Info (12134): Parameter "OUTDATA_REG_A" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+    Info (12134): Parameter "INIT_FILE" = "db/lab1_demo.ram0_triangle_lut_16b_a89b6f06.hdl.mif"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_47e1.tdf
+    Info (12023): Found entity 1: altsyncram_47e1 File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/db/altsyncram_47e1.tdf Line: 28
+Info (12130): Elaborated megafunction instantiation "wavegen_codec:wave_out|wave_gen_16b:wg|sine_lut_16b:rom_sine|altsyncram:rom_rtl_0"
+Info (12133): Instantiated megafunction "wavegen_codec:wave_out|wave_gen_16b:wg|sine_lut_16b:rom_sine|altsyncram:rom_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "ROM"
+    Info (12134): Parameter "WIDTH_A" = "16"
+    Info (12134): Parameter "WIDTHAD_A" = "10"
+    Info (12134): Parameter "NUMWORDS_A" = "1024"
+    Info (12134): Parameter "OUTDATA_REG_A" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+    Info (12134): Parameter "INIT_FILE" = "db/lab1_demo.ram0_sine_lut_16b_d9458eff.hdl.mif"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_mrd1.tdf
+    Info (12023): Found entity 1: altsyncram_mrd1 File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/db/altsyncram_mrd1.tdf Line: 28
+Warning (14284): Synthesized away the following node(s):
+    Warning (14285): Synthesized away the following RAM node(s):
+        Warning (14320): Synthesized away node "wavegen_codec:wave_out|wave_gen_16b:wg|sine_lut_16b:rom_sine|altsyncram:rom_rtl_0|altsyncram_mrd1:auto_generated|ram_block1a0" File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/db/altsyncram_mrd1.tdf Line: 35
+        Warning (14320): Synthesized away node "wavegen_codec:wave_out|wave_gen_16b:wg|triangle_lut_16b:rom_triangle|altsyncram:rom_rtl_0|altsyncram_47e1:auto_generated|ram_block1a0" File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/db/altsyncram_47e1.tdf Line: 35
+        Warning (14320): Synthesized away node "wavegen_codec:wave_out|wave_gen_16b:wg|sawtooth_lut_16b:rom_sawtooth|altsyncram:rom_rtl_0|altsyncram_18e1:auto_generated|ram_block1a0" File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/db/altsyncram_18e1.tdf Line: 35
+        Warning (14320): Synthesized away node "wavegen_codec:wave_out|wave_gen_16b:wg|ecg_lut_16b:rom_ecg|altsyncram:rom_rtl_0|altsyncram_2hd1:auto_generated|ram_block1a0" File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/db/altsyncram_2hd1.tdf Line: 35
+Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Warning (13034): The following nodes have both tri-state and non-tri-state drivers
+    Warning (13035): Inserted always-enabled tri-state buffer between "AUD_ADCLRCK" and its non-tri-state driver. File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 33
+    Warning (13035): Inserted always-enabled tri-state buffer between "AUD_BCLK" and its non-tri-state driver. File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 34
+    Warning (13035): Inserted always-enabled tri-state buffer between "AUD_DACLRCK" and its non-tri-state driver. File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 36
+Warning (13009): TRI or OPNDRN buffers permanently enabled
+    Warning (13010): Node "AUD_ADCLRCK~synth" File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 33
+    Warning (13010): Node "AUD_BCLK~synth" File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 34
+    Warning (13010): Node "AUD_DACLRCK~synth" File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 36
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "HEX0[0]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 24
+    Warning (13410): Pin "HEX0[1]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 24
+    Warning (13410): Pin "HEX0[2]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 24
+    Warning (13410): Pin "HEX0[3]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 24
+    Warning (13410): Pin "HEX0[4]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 24
+    Warning (13410): Pin "HEX0[5]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 24
+    Warning (13410): Pin "HEX0[6]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 24
+    Warning (13410): Pin "HEX1[0]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 25
+    Warning (13410): Pin "HEX1[1]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 25
+    Warning (13410): Pin "HEX1[2]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 25
+    Warning (13410): Pin "HEX1[3]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 25
+    Warning (13410): Pin "HEX1[4]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 25
+    Warning (13410): Pin "HEX1[5]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 25
+    Warning (13410): Pin "HEX1[6]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 25
+    Warning (13410): Pin "HEX2[0]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 26
+    Warning (13410): Pin "HEX2[1]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 26
+    Warning (13410): Pin "HEX2[2]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 26
+    Warning (13410): Pin "HEX2[3]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 26
+    Warning (13410): Pin "HEX2[4]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 26
+    Warning (13410): Pin "HEX2[5]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 26
+    Warning (13410): Pin "HEX2[6]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 26
+    Warning (13410): Pin "HEX3[0]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 27
+    Warning (13410): Pin "HEX3[1]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 27
+    Warning (13410): Pin "HEX3[2]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 27
+    Warning (13410): Pin "HEX3[3]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 27
+    Warning (13410): Pin "HEX3[4]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 27
+    Warning (13410): Pin "HEX3[5]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 27
+    Warning (13410): Pin "HEX3[6]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 27
+    Warning (13410): Pin "HEX4[0]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 28
+    Warning (13410): Pin "HEX4[1]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 28
+    Warning (13410): Pin "HEX4[2]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 28
+    Warning (13410): Pin "HEX4[3]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 28
+    Warning (13410): Pin "HEX4[4]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 28
+    Warning (13410): Pin "HEX4[5]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 28
+    Warning (13410): Pin "HEX4[6]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 28
+    Warning (13410): Pin "HEX5[0]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 29
+    Warning (13410): Pin "HEX5[1]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 29
+    Warning (13410): Pin "HEX5[2]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 29
+    Warning (13410): Pin "HEX5[3]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 29
+    Warning (13410): Pin "HEX5[4]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 29
+    Warning (13410): Pin "HEX5[5]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 29
+    Warning (13410): Pin "HEX5[6]" is stuck at GND File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 29
+Info (286030): Timing-Driven Synthesis is running
+Info (17049): 6 registers lost all their fanouts during netlist optimizations.
+Info (144001): Generated suppressed messages file D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.map.smsg
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 7 node(s), including 0 DDIO, 1 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 9 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "CLOCK3_50" File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 10
+    Warning (15610): No output dependent on input pin "CLOCK4_50" File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 11
+    Warning (15610): No output dependent on input pin "CLOCK_50" File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 12
+    Warning (15610): No output dependent on input pin "KEY[0]" File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 15
+    Warning (15610): No output dependent on input pin "KEY[1]" File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 15
+    Warning (15610): No output dependent on input pin "KEY[2]" File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 15
+    Warning (15610): No output dependent on input pin "KEY[3]" File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 15
+    Warning (15610): No output dependent on input pin "SW[3]" File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 18
+    Warning (15610): No output dependent on input pin "AUD_ADCDAT" File: D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.v Line: 32
+Info (21057): Implemented 1884 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 19 input pins
+    Info (21059): Implemented 55 output pins
+    Info (21060): Implemented 4 bidirectional pins
+    Info (21061): Implemented 1726 logic cells
+    Info (21064): Implemented 60 RAM segments
+    Info (21065): Implemented 1 PLLs
+    Info (21062): Implemented 19 DSP elements
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 91 warnings
+    Info: Peak virtual memory: 4946 megabytes
+    Info: Processing ended: Tue Nov 25 13:25:21 2025
+    Info: Elapsed time: 00:00:10
+    Info: Total CPU time (on all processors): 00:00:07
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in D:/Workspace/RTL_Design/DSP_FPGA/demo/lab1/lab1_demo.map.smsg.
+
+

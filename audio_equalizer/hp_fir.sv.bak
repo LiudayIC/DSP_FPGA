@@ -1,0 +1,110 @@
+module highpass_fir(
+    input logic clk, rst_n,
+    input logic i_cs,
+    input logic signed [15:0] i_sample,
+    output logic signed [23:0] o_filterd_sig 
+);
+
+reg signed [15:0] sample_delay [0:31];
+reg signed [16:0] symmetric_result [0:16];
+reg signed [28:0] coeff_multiplier	 [0:16];
+reg signed [16:0] mul_scale_down [0:16];
+reg signed [17:0] s1_coeff_add  [0:7];
+reg signed [18:0] s2_coeff_add  [0:3];
+reg signed [19:0] s3_coeff_add  [0:1];
+reg signed [11:0]  coeff_value   [0:16];
+
+reg signed [20:0] filter_sig;
+reg signed [20:0] r_filter_sig;
+
+initial begin
+	 coeff_value [0]   = 12'h00; //  0
+    coeff_value [1]   = 12'h00; //  0
+    coeff_value [2]   = 12'hFF; //  -1
+    coeff_value [3]   = 12'hFE; //  -2
+    coeff_value [4]   = 12'hFE; //  -2
+    coeff_value [5]   = 12'h00; // 0
+    coeff_value [6]   = 12'h06; // 6
+    coeff_value [7]   = 12'h0D; //  13
+    coeff_value [8]   = 12'h14; //  20
+    coeff_value [9]   = 12'h15; //  21
+    coeff_value [10]  = 12'h0A; // 	10
+    coeff_value [11]  = 12'hFF1; // -14
+    coeff_value [12]  = 12'hFCB; // -52
+    coeff_value [13]  = 12'hF9E; // -98
+    coeff_value [14]  = 12'hF72; // -142
+    coeff_value [15]  = 12'hF52; // -174
+	 coeff_value [16]  = 12'h346; // 838
+end
+
+
+always @(posedge clk) begin
+    if (rst_n) begin
+        sample_delay [0] <= 16'd0;
+    end else if (i_cs)
+        sample_delay [0] <= i_sample;
+end
+
+// sample_delay0 = x(n-1) ; sample_delay1  = x(n-2) ; x(n) = i_sample ; sample_delay31 = x(n-32)
+
+genvar i;
+generate
+for (i = 1 ; i <= 31; i = i +1) begin:Shifting_sample
+   always @(posedge clk) begin
+        if (rst_n) begin
+            sample_delay [i] <= 16'd0;
+        end else if (i_cs) begin
+            sample_delay [i] <= sample_delay[i - 1];
+        end
+    end 
+end
+endgenerate
+
+
+assign symmetric_result [0] = i_sample + sample_delay [31];
+assign symmetric_result [16] = sample_delay[15];
+
+generate
+for ( i = 1; i <= 15 ; i = i + 1) begin: Calculating_symmetric
+    assign symmetric_result [i] = sample_delay [i-1] + sample_delay [31 - i];
+end
+endgenerate
+
+generate 
+for ( i = 0; i <= 16 ; i = i + 1) begin: coeff_multiply
+    assign coeff_multiplier [i] = coeff_value [i] * symmetric_result[i] ;
+end
+endgenerate
+
+generate 
+for ( i = 0; i <= 16 ; i = i + 1) begin: shift_back
+    assign mul_scale_down [i]   = coeff_multiplier [i] >>> 12;
+end
+endgenerate
+
+generate
+for ( i = 0; i <= 7; i = i +1)    begin: sum_16_to_8
+    assign s1_coeff_add [i] = mul_scale_down[2*i] + mul_scale_down [2*i+1];
+end
+endgenerate
+
+generate 
+for ( i = 0; i <= 3; i = i +1) begin: sum_8_to_4
+    assign s2_coeff_add [i] = s1_coeff_add [2*i] + s1_coeff_add[2*i +1];
+end
+endgenerate
+
+assign s3_coeff_add [0] = s2_coeff_add[0] + s2_coeff_add[1];
+assign s3_coeff_add [1] = s2_coeff_add[2] + s2_coeff_add[3];
+assign filter_sig = s3_coeff_add[0] + s3_coeff_add[1] + mul_scale_down [16];
+
+always @(posedge clk) begin	
+	if (rst_n) 
+	r_filter_sig <= 21'd0;
+	else if (i_cs)
+	r_filter_sig <= filter_sig;
+	else r_filter_sig <= r_filter_sig;
+end
+
+assign o_filterd_sig = r_filter_sig;
+endmodule

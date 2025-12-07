@@ -1,0 +1,1 @@
+Warning (10268): Verilog HDL information at i2c_controller.v(36): always construct contains both blocking and non-blocking assignments File: D:/Workspace/RTL_Design/DSP_FPGA/AUD_EQUALIZER/24b/i2c_controller.v Line: 36
